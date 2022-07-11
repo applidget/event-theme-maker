@@ -8,6 +8,6 @@ console.log("expose");
 startNgrok((host) => {
   console.log(`NGROK host is ${host}`);
 
-  startLocalServer();
+  startLocalServer(host);
   console.log("local server running");
 });
