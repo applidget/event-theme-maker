@@ -1,0 +1,19 @@
+{
+  "name": "event-theme-maker",
+  "version": "1.0.0",
+  "description": "Eventmaker theme developers tools belt",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Eventmaker team 🚀",
+  "license": "ISC",
+  "engines": {
+    "node": "~> 14"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0"
+  },
+  "scripts": {
+    "lint": "npx eslint '**/*.js'"
+  },
+  "dependencies": {}
+}
