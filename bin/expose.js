@@ -1,13 +1,27 @@
 #!/usr/bin/env node
 
-const startLocalServer = require("../lib/local_server");
-const startFsWatcher = require("../lib/fs_watcher");
-const ApiClient = require("../lib/api_client");
-const { PORT, API_ENDPOINT, LOCAL_ENDPOINT } = require("../lib/constants");
-const syncFiles = require("../lib/sync_files");
-
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
+
+const startLocalServer = require("../lib/start_local_server");
+const watchFileSystem = require("../lib/watch_file_system");
+const syncFiles = require("../lib/utils/sync_files");
+
+const ApiClient = require("../lib/api_client");
+
+const {
+  PORT,
+  API_ENDPOINT,
+  LOCAL_ENDPOINT
+} = require("../lib/constants");
+
+const {
+  log,
+  logFatal,
+  logUpload,
+  logInfo,
+  wrapRed
+} = require("../lib/utils/log");
 
 const argv = yargs(hideBin(process.argv))
   .options({
@@ -56,8 +70,7 @@ const apiClient = new ApiClient(endpoint, token, eventId);
 const fetchTheme = (cb) => {
   apiClient.fetchWebsite((ok, response) => {
     if (!ok) {
-      console.error(`❌ error fetching website ${JSON.stringify(response)}`);
-      process.exit(1);
+      logFatal(`error fetching website ${JSON.stringify(response)}`);
     }
 
     cb(response.theme_name);
@@ -71,14 +84,13 @@ const syncLayouts = (theme, host, cb) => {
 
   syncFiles(apiClient, files, host, (ok, error) => {
     if (ok) {
-      console.log(`⤴️ ${themeLayout} ✅`);
-      console.log(`⤴️ ${embedLayout} ✅`);
+      logUpload(themeLayout);
+      logUpload(embedLayout);
       return cb();
     }
 
-    console.log(error);
-    process.exit(1);
-  })
+    logFatal(error);
+  });
 }
 
 const performInitialSync = (theme, host, cb) => {
@@ -91,32 +103,31 @@ const performInitialSync = (theme, host, cb) => {
       return cb();
     }
 
-    console.error(`❌ error reloading theme ${JSON.stringify(error)}`);
-    process.exit(1);
+    logFatal(`error reloading theme ${JSON.stringify(error)}`);
   });
 }
 
-const watchFileSystem = (host) => {
-  startFsWatcher(apiClient, host, (file, ok, error) => {
-    if (ok) {
-      return console.log(`⤴️ ${file} ✅`);
-    }
+const startAutoSync = (host) => {
+  watchFileSystem(file => {
+    syncFiles(apiClient, [file], host, (ok, error) => {
+      if (ok) {
+        return logUpload(file);
+      }
 
-    console.log("\033[0;31m--------------------------------------\033[0m");
-    console.log(error);
-    console.log("\033[0;31m--------------------------------------\033[0m");
+      wrapRed(() => log(error));
+    });
   });
 }
 
 fetchTheme(theme => {
-  console.log(`Working on ${theme}`);
+  logInfo(`Working on ${theme}`);
   startLocalServer({ port, expose: !local }, host => {
     console.log(`local server ${host}`);
     performInitialSync(theme, host, () => {
       console.log("✅ theme reloaded");
       console.log(`watching filesystem ${host}`);
-      watchFileSystem(host);
+      startAutoSync(host);
     });
   });
-})
+});
 
