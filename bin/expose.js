@@ -20,7 +20,8 @@ const {
   logFatal,
   logUpload,
   logInfo,
-  wrapRed
+  wrapRed,
+  logHelp
 } = require("../lib/utils/log");
 
 const argv = yargs(hideBin(process.argv))
@@ -35,7 +36,7 @@ const argv = yargs(hideBin(process.argv))
       describe: "The Eventmaker event id you are working on",
       demandOption: true
     },
-    "sync": {
+    "initialSync": {
       alias: "s",
       describe: "Wether or not the theme will be entirely synced on launch",
       boolean: true,
@@ -59,7 +60,7 @@ const argv = yargs(hideBin(process.argv))
 const {
   token,
   eventId,
-  sync,
+  initialSync,
   port,
   local
 } = argv;
@@ -94,10 +95,12 @@ const syncLayouts = (theme, host, cb) => {
 }
 
 const performInitialSync = (theme, host, cb) => {
-  if (!sync) {
+  if (!initialSync) {
     return syncLayouts(theme, host, cb);
   }
 
+  logInfo("syncing the theme, please be patient...");
+  logHelp("use --initialSync=false to avoid initial theme syncing");
   apiClient.themeFullSync(host, (ok, error) => {
     if (ok) {
       return cb();
@@ -120,14 +123,11 @@ const startAutoSync = (host) => {
 }
 
 fetchTheme(theme => {
-  logInfo(`Working on ${theme}`);
+  logInfo(`working on 🚀 ${theme} 🚀`);
   startLocalServer({ port, expose: !local }, host => {
-    console.log(`local server ${host}`);
     performInitialSync(theme, host, () => {
-      console.log("✅ theme reloaded");
-      console.log(`watching filesystem ${host}`);
+      log(`✅ everything is ready ! Happy coding (host: ${host})`);
       startAutoSync(host);
     });
   });
 });
-
