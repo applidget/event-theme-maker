@@ -63,6 +63,7 @@ const argv = yargs(hideBin(process.argv))
       default: "http://localhost:3000"
     }
   })
+  .config()
   .help("help")
   .wrap(null)
   .argv;
@@ -138,7 +139,7 @@ const startAutoSync = (host) => {
 
 const summary = (theme, host) => {
   log("✅ everything is ready 😊");
-  log(`  - working on ${theme}`);
+  log(`  - working on ${theme} on event ${eventId}`);
   log(`  - local server running at ${host}`);
   log(`  - webpack server running at ${devServer}`);
   initialSync ? (
