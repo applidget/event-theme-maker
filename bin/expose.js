@@ -46,7 +46,7 @@ const argv = yargs(hideBin(process.argv))
     },
     "local": {
       alias: "l",
-      describe: "Eventmaker run locally on my machine",
+      describe: "Eventmaker run localy on my machine",
       boolean: true,
       default: false
     },
