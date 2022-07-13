@@ -3,14 +3,14 @@
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 
-const startLocalServer = require("../lib/start_local_server");
-const watchFileSystem = require("../lib/watch_file_system");
-const syncFiles = require("../lib/utils/sync_files");
-const stringify = require("../lib/utils/stringify");
+const startLocalServer = require("../lib/expose/start_local_server");
+const watchFileSystem = require("../lib/expose/watch_file_system");
+const syncFiles = require("../lib/expose/utils/sync_files");
+const stringify = require("../lib/expose/utils/stringify");
 
-const ApiClient = require("../lib/api_client");
+const ApiClient = require("../lib/expose/api_client");
 
-const { API_ENDPOINT } = require("../lib/constants");
+const { API_ENDPOINT } = require("../lib/expose/constants");
 
 const {
   log,
@@ -19,7 +19,7 @@ const {
   logInfo,
   wrapRed,
   logHelp
-} = require("../lib/utils/log");
+} = require("../lib/expose/utils/log");
 
 const argv = yargs(hideBin(process.argv))
   .options({
