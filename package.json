@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "chokidar": "^3.5.3",
+    "fs-extra": "^10.1.0",
     "js-yaml": "^4.1.0",
     "ngrok": "^4.3.1",
     "yargs": "^17.5.1"
