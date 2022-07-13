@@ -135,12 +135,32 @@ const startAutoSync = (host) => {
   });
 }
 
+const summary = (theme, host) => {
+  log("✅ everything is ready 😊");
+  log(`  - working on ${theme}`);
+  log(`  - local server running at ${host}`);
+  log(`  - webpack server running at ${devServer}`);
+  initialSync ? (
+    log(`  - local theme has been reloaded, assets will be fetched from the local server}`)
+  ) : (
+    log(`  - theme layouts have been reloaded, assets will be fetched from the local server`)
+  );
+
+  local ? (
+    log(`  - reaching Eventmaker at ${eventmakerLocalEndpoint}`)
+  ) : (
+    log(`  - reaching Eventmaker at ${API_ENDPOINT}`)
+  );
+
+  log(`  - liquid files in ${watchPath} will be automatically synchronized`);
+  log("Happy coding 👩‍💻");
+}
+
 fetchTheme(theme => {
-  logInfo(`working on 🚀 ${theme} 🚀`);
   startLocalServer({ port, expose: !local, devServer }, host => {
     performInitialSync(theme, host, () => {
-      log(`✅ everything is ready ! Happy coding (host: ${host})`);
       startAutoSync(host);
+      summary(theme, host);
     });
   });
 });
