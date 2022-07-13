@@ -24,8 +24,8 @@ const {
 const argv = yargs(hideBin(process.argv))
   .options({
     "token": {
-      alias: "a",
-      describe: "Your Eventmaker auth token to access the REST API",
+      alias: "t",
+      describe: "Your Eventmaker authentication token to access the REST API (find it on your profifle page)",
       demandOption: true
     },
     "eventId": {
@@ -35,18 +35,18 @@ const argv = yargs(hideBin(process.argv))
     },
     "initialSync": {
       alias: "s",
-      describe: "Wether or not the theme will be entirely synced on launch",
+      describe: "Whether or not an initial theme syncing will be performed",
       boolean: true,
       default: false
     },
     "port": {
       alias: "p",
-      describe: "the port used by the local server",
+      describe: "The port used by the local server",
       default: 8000
     },
     "local": {
       alias: "l",
-      describe: "Eventmaker run localy on my machine",
+      describe: "Set to true if Eventmaker runs locally on my machine",
       boolean: true,
       default: false
     },
@@ -59,7 +59,7 @@ const argv = yargs(hideBin(process.argv))
       default: "http://localhost:9999"
     },
     "eventmakerLocalEndpoint": {
-      describe: "when using local=true specify the local endpoint of Eventmaker",
+      describe: "When using local=true specify the local endpoint of Eventmaker",
       default: "http://localhost:3000"
     }
   })
@@ -143,7 +143,7 @@ const summary = (theme, host) => {
   log(`  - local server running at ${host}`);
   log(`  - webpack server running at ${devServer}`);
   initialSync ? (
-    log(`  - local theme has been reloaded, assets will be fetched from the local server}`)
+    log(`  - local theme has been reloaded, assets will be fetched from the local server`)
   ) : (
     log(`  - theme layouts have been reloaded, assets will be fetched from the local server`)
   );
