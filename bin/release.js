@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
-const package = require("../lib/release/package");
+const pack = require("../lib/release/pack");
+const bundle = require("../lib/release/bundle");
 
-package("grand-conference", (buildDir) => {
-  console.log("ok", buildDir);
-})
+pack("grand-conference", (releaseDir, assetsDir) => {
+  console.log("ok", releaseDir, assetsDir);
+  bundle("grand-conference", releaseDir, assetsDir, () => {
+    console.log("release completed");
+  });
+});
+
 
 // first webpack build. This will set assets/dist
 // then copy in the build dir what needs to be exposed
