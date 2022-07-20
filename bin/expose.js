@@ -10,7 +10,7 @@ const stringify = require("../lib/utils/stringify");
 
 const ApiClient = require("../lib/api_client");
 
-const { API_ENDPOINT } = require("../lib/expose/constants");
+const { API_ENDPOINT } = require("../lib/constants");
 
 const {
   log,

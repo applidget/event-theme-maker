@@ -1,19 +1,66 @@
 #!/usr/bin/env node
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
 
 const pack = require("../lib/release/pack");
 const bundle = require("../lib/release/bundle");
 const upload = require("../lib/release/upload");
 const ApiClient = require("../lib/api_client");
+const { API_ENDPOINT } = require("../lib/constants");
+const {
+  logSuccess,
+  logInfo,
+  logUpload
+} = require("../lib/utils/log");
 
-const apiClient = new ApiClient("http://localhost:3000", "HzaYiGz5mV29xX3x5rib");
+const argv = yargs(hideBin(process.argv))
+  .options({
+    "theme": {
+      alias: "n",
+      describe : "The name of the theme to release",
+      demandOption: true
+    },
+    "token": {
+      alias: "t",
+      describe: "Your Eventmaker authentication token to access the REST API (find it on your profifle page)",
+      demandOption: true
+    },
+    "local": {
+      alias: "l",
+      describe: "Set to true if Eventmaker runs locally on my machine",
+      boolean: true,
+      default: false
+    },
+    "eventmakerLocalEndpoint": {
+      describe: "When using local=true specify the local endpoint of Eventmaker",
+      default: "http://localhost:3000"
+    }
+  })
+  .config()
+  .help("help")
+  .wrap(null)
+  .argv;
 
-const buildDir = "builds-exp";
+const {
+  theme,
+  token,
+  local,
+  eventmakerLocalEndpoint
+} = argv;
 
-pack("grand-conference", buildDir, (releaseDir, assetsDir) => {
-  console.log("ok", releaseDir, assetsDir);
-  bundle("grand-conference", buildDir, releaseDir, assetsDir, () => {
-    upload("grand-conference", releaseDir, assetsDir, apiClient, () => {
-      console.log("release completed");
+const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
+const apiClient = new ApiClient(endpoint, token);
+
+const buildDir = "builds-exp"; // TODO: this will be a constant
+
+logInfo(`Starting build process for ${theme}`);
+pack(theme, buildDir, (releaseDir, assetsDir) => {
+  logSuccess("Package completed");
+  bundle(theme, buildDir, releaseDir, assetsDir, () => {
+    logSuccess("Bundle completed");
+    upload(theme, releaseDir, assetsDir, apiClient, (files) => {
+      files.forEach(f => logUpload(f));
+      logSuccess(`Theme ${theme} has been released`);
     });
   });
 });
