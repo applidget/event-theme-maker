@@ -1,6 +1,6 @@
 {
   "name": "event-theme-maker",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "Eventmaker theme developers tools belt",
   "keywords": [],
   "author": "Eventmaker team 🚀",
@@ -16,8 +16,12 @@
     "eslint": "^8.19.0"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.131.0",
+    "async": "^3.2.4",
     "chokidar": "^3.5.3",
+    "fs-extra": "^10.1.0",
     "js-yaml": "^4.1.0",
+    "klaw-sync": "^6.0.0",
     "ngrok": "^4.3.1",
     "yargs": "^17.5.1"
   },
