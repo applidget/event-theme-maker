@@ -23,6 +23,9 @@
     "js-yaml": "^4.1.0",
     "klaw-sync": "^6.0.0",
     "ngrok": "^4.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3",
     "yargs": "^17.5.1"
   },
   "scripts": {
