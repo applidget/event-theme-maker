@@ -6,7 +6,7 @@
   "author": "Eventmaker team 🚀",
   "license": "ISC",
   "bin": {
-    "expose": "./bin/expose.js",
+    "start": "./bin/start.js",
     "release": "./bin/release.js"
   },
   "engines": {

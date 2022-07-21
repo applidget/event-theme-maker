@@ -3,10 +3,10 @@
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 
-const startLocalServer = require("../lib/expose/start_local_server");
-const startDevServer = require("../lib/expose/start_dev_server");
-const watchFileSystem = require("../lib/expose/watch_file_system");
-const syncFiles = require("../lib/expose/utils/sync_files");
+const startLocalServer = require("../lib/start/start_local_server");
+const startDevServer = require("../lib/start/start_dev_server");
+const watchFileSystem = require("../lib/start/watch_file_system");
+const syncFiles = require("../lib/start/utils/sync_files");
 const stringify = require("../lib/utils/stringify");
 
 const ApiClient = require("../lib/api_client");
