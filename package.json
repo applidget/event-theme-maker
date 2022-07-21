@@ -6,7 +6,7 @@
   "author": "Eventmaker team 🚀",
   "license": "ISC",
   "bin": {
-    "expose": "./bin/expose.js",
+    "start": "./bin/start.js",
     "release": "./bin/release.js"
   },
   "engines": {
@@ -17,12 +17,27 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.131.0",
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
     "async": "^3.2.4",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
     "chokidar": "^3.5.3",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "file-loader": "^6.2.0",
     "fs-extra": "^10.1.0",
     "js-yaml": "^4.1.0",
     "klaw-sync": "^6.0.0",
+    "mini-css-extract-plugin": "^2.6.1",
     "ngrok": "^4.3.1",
+    "postcss-loader": "^7.0.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass-loader": "^13.0.2",
+    "terser-webpack-plugin": "^5.3.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3",
     "yargs": "^17.5.1"
   },
   "scripts": {

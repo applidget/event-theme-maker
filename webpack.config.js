@@ -1,0 +1,136 @@
+const path = require("path");
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+
+module.exports = (env) => ({
+  mode: "production",
+  stats: "minimal",
+  infrastructureLogging: { level: "error" },
+  entry: [
+    `./themes/${env.theme}/assets/js/main.js`,
+    `./themes/${env.theme}/assets/css/main.scss`
+  ],
+  output: {
+    filename: "[name].js",
+    path: path.resolve(`./themes/${env.theme}/assets`, "dist"),
+  },
+  externals: {
+    // require("jquery") is external and available
+    // on the global var jQuery
+    jquery: "jQuery",
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: { importLoaders: 1 },
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  ["autoprefixer"],
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.s(a|c)ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: { importLoaders: 1 },
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  ["autoprefixer"]
+                ],
+              },
+            },
+          },
+          {
+            loader: "resolve-url-loader"
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        exclude: [/img/],
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        exclude: [/fonts/],
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "img/",
+        },
+      },
+    ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserJSPlugin({
+        terserOptions: {
+          output: {
+            comments: false
+          }
+        }
+      }),
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            "default",
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      }),
+    ],
+  }
+});

@@ -2,6 +2,7 @@
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 
+const buildAssets = require("../lib/release/build_assets");
 const pack = require("../lib/release/pack");
 const bundle = require("../lib/release/bundle");
 const upload = require("../lib/release/upload");
@@ -10,7 +11,8 @@ const { API_ENDPOINT } = require("../lib/constants");
 const {
   logSuccess,
   logInfo,
-  logUpload
+  logUpload,
+  log
 } = require("../lib/utils/log");
 
 const argv = yargs(hideBin(process.argv))
@@ -54,13 +56,17 @@ const apiClient = new ApiClient(endpoint, token);
 const buildDir = "builds-exp"; // TODO: this will be a constant
 
 logInfo(`Starting build process for ${theme}`);
-pack(theme, buildDir, (releaseDir, assetsDir) => {
-  logSuccess("Package completed");
-  bundle(theme, buildDir, releaseDir, assetsDir, () => {
-    logSuccess("Bundle completed");
-    upload(theme, releaseDir, assetsDir, apiClient, (files) => {
-      files.forEach(f => logUpload(f));
-      logSuccess(`Theme ${theme} has been released`);
+log("1️⃣ building assets...");
+buildAssets(theme, () => {
+  log("2️⃣ packaging theme...");
+  pack(theme, buildDir, (releaseDir, assetsDir) => {
+    log("3️⃣ creating theme bundle...");
+    bundle(theme, buildDir, releaseDir, assetsDir, () => {
+      log("4️⃣ publishing theme...");
+      upload(theme, releaseDir, assetsDir, apiClient, (files) => {
+        files.forEach(f => logUpload(f));
+        logSuccess(`Theme ${theme} has been released`);
+      });
     });
   });
 });
