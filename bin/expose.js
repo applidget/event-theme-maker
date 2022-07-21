@@ -4,13 +4,17 @@ const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 
 const startLocalServer = require("../lib/expose/start_local_server");
+const startDevServer = require("../lib/expose/start_dev_server");
 const watchFileSystem = require("../lib/expose/watch_file_system");
 const syncFiles = require("../lib/expose/utils/sync_files");
 const stringify = require("../lib/utils/stringify");
 
 const ApiClient = require("../lib/api_client");
 
-const { API_ENDPOINT } = require("../lib/constants");
+const {
+  API_ENDPOINT,
+  DEV_SERVER_ENDPOINT: devServer
+} = require("../lib/constants");
 
 const {
   log,
@@ -54,10 +58,6 @@ const argv = yargs(hideBin(process.argv))
       describe: "Auto sync folder",
       default: "./themes/**/*.liquid"
     },
-    "devServer": {
-      describe: "The Webpack Dev Server endpoint",
-      default: "http://localhost:9999"
-    },
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
       default: "http://localhost:3000"
@@ -75,7 +75,6 @@ const {
   port,
   local,
   watchPath,
-  devServer,
   eventmakerLocalEndpoint
 } = argv;
 
@@ -141,7 +140,7 @@ const summary = (theme, host) => {
   log("✅ everything is ready 😊");
   log(`  - working on ${theme} on event ${eventId}`);
   log(`  - local server running at ${host}`);
-  log(`  - webpack server running at ${devServer}`);
+  log(`  - webpack dev server running at ${devServer}`);
   initialSync ? (
     log(`  - local theme has been reloaded, assets will be fetched from the local server`)
   ) : (
@@ -155,14 +154,17 @@ const summary = (theme, host) => {
   );
 
   log(`  - liquid files in ${watchPath} will be automatically synchronized`);
-  log("Happy coding 👩‍💻");
+  logHelp("You will see logs from webpack dev server and theme synchronisation. In case of issues, read the logs 😊");
+  log("Happy coding 👩‍💻\n\n");
 }
 
 fetchTheme(theme => {
-  startLocalServer({ port, expose: !local, devServer }, host => {
-    performInitialSync(theme, host, () => {
-      startAutoSync(host);
-      summary(theme, host);
+  startDevServer(theme, () => {
+    startLocalServer({ port, expose: !local, devServer }, host => {
+      performInitialSync(theme, host, () => {
+        startAutoSync(host);
+        summary(theme, host);
+      });
     });
   });
 });
