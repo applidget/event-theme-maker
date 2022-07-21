@@ -44,5 +44,9 @@
   },
   "scripts": {
     "lint": "npx eslint '**/*.js'"
-  }
+  },
+  "browserslist": [
+    "last 4 versions",
+    "ie > 8"
+  ]
 }
