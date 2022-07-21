@@ -64,6 +64,7 @@ const argv = yargs(hideBin(process.argv))
     }
   })
   .config()
+  .env("ETM")
   .help("help")
   .wrap(null)
   .argv;
