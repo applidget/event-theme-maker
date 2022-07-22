@@ -9,8 +9,6 @@ module.exports = {
         "sourceType": "module"
     },
     "globals": {
-        "test": true,
-        "expect": true
     },
     "rules": {
     }
