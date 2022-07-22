@@ -9,7 +9,6 @@ const {
   logError,
   logSuccess,
   logFatal,
-  logInfo,
   log
 } = require("../lib/utils/log");
 
