@@ -16,6 +16,7 @@ const liquidIsValid = require("../lib/validations/liquid_is_valid");
 const schemasAreValidJson = require("../lib/validations/schemas_are_valid_json");
 const specsLinkToExistingResources = require("../lib/validations/specs_link_to_existing_resources");
 const specsNoDuplicate = require("../lib/validations/specs_no_duplicate");
+const exhaustiveLocales = require("../lib/validations/exhaustive_locales");
 
 const argv = yargs(hideBin(process.argv))
   .options({
@@ -47,7 +48,8 @@ themes().forEach(theme => {
     liquidIsValid(theme),
     schemasAreValidJson(theme),
     specsLinkToExistingResources(theme),
-    specsNoDuplicate(theme)
+    specsNoDuplicate(theme),
+    exhaustiveLocales(theme)
   ].flat();
 
   if (errors.length === 0) {
@@ -57,7 +59,7 @@ themes().forEach(theme => {
 
   errors.forEach(error => {
     logError(error);
-    logFatal("validation failed");
   });
+  logFatal("validation failed");
 });
 
