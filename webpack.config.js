@@ -9,8 +9,8 @@ module.exports = (env) => ({
   stats: "minimal",
   infrastructureLogging: { level: "error" },
   entry: [
-    `./themes/${env.theme}/assets/js/main.js`,
-    `./themes/${env.theme}/assets/css/main.scss`
+    path.resolve(`./themes/${env.theme}/assets/js/main.js`),
+    path.resolve(`./themes/${env.theme}/assets/css/main.scss`)
   ],
   output: {
     filename: "[name].js",
@@ -89,25 +89,11 @@ module.exports = (env) => ({
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        exclude: [/img/],
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              outputPath: "fonts/",
-            },
-          },
-        ],
+        type: "asset/resource"
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
-        exclude: [/fonts/],
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-          outputPath: "img/",
-        },
+        type: "asset/resource"
       },
     ],
   },
