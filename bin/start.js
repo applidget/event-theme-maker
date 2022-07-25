@@ -61,6 +61,9 @@ const argv = yargs(hideBin(process.argv))
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
       default: "http://localhost:3000"
+    },
+    "ngrokToken": {
+      debscribe: "When using local=false, local endpoint will be exposed using ngrok. Ngrok token will be taken from the default location but you can pass it here to use another one"
     }
   })
   .config()
@@ -76,7 +79,8 @@ const {
   port,
   local,
   watchPath,
-  eventmakerLocalEndpoint
+  eventmakerLocalEndpoint,
+  ngrokToken
 } = argv;
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
@@ -159,9 +163,11 @@ const summary = (theme, host) => {
   log("Happy coding 👩‍💻\n\n");
 }
 
+logInfo("starting development environment ...");
+
 fetchTheme(theme => {
   startDevServer(theme, () => {
-    startLocalServer({ port, expose: !local, devServer }, host => {
+    startLocalServer({ port, expose: !local, devServer, ngrokToken }, host => {
       performInitialSync(theme, host, () => {
         startAutoSync(host);
         summary(theme, host);
