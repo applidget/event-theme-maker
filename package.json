@@ -1,13 +1,14 @@
 {
   "name": "event-theme-maker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Eventmaker theme developers tools belt",
   "keywords": [],
   "author": "Eventmaker team 🚀",
   "license": "ISC",
   "bin": {
     "start": "./bin/start.js",
-    "release": "./bin/release.js"
+    "release": "./bin/release.js",
+    "validate": "./bin/validate.js"
   },
   "engines": {
     "node": ">= 16.16.0"
