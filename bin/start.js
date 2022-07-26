@@ -101,7 +101,7 @@ const syncLayouts = (theme, host, cb) => {
   const embedLayout = `themes/${theme}/layouts/embed.liquid`;
   const files = [themeLayout, embedLayout];
 
-  syncFiles(apiClient, files, devServer, host, (ok, error) => {
+  syncFiles(theme, apiClient, files, devServer, host, (ok, error) => {
     if (ok) {
       logUpload(themeLayout);
       logUpload(embedLayout);
@@ -129,9 +129,9 @@ const performInitialSync = (theme, host, cb) => {
   });
 }
 
-const startAutoSync = (host) => {
+const startAutoSync = (theme, host) => {
   watchFileSystem(watchPath, (file) => {
-    syncFiles(apiClient, [file], devServer, host, (ok, error) => {
+    syncFiles(theme, apiClient, [file], devServer, host, (ok, error) => {
       if (ok) {
         return logUpload(file);
       }
@@ -169,7 +169,7 @@ fetchTheme(theme => {
   startDevServer(theme, () => {
     startLocalServer({ port, expose: !local, devServer, ngrokToken }, host => {
       performInitialSync(theme, host, () => {
-        startAutoSync(host);
+        startAutoSync(theme, host);
         summary(theme, host);
       });
     });
