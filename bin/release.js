@@ -7,7 +7,10 @@ const pack = require("../lib/release/pack");
 const bundle = require("../lib/release/bundle");
 const upload = require("../lib/release/upload");
 const ApiClient = require("../lib/api_client");
-const { API_ENDPOINT } = require("../lib/constants");
+const {
+  API_ENDPOINT,
+  BUCKET_ROOT_DIR
+} = require("../lib/constants");
 const {
   logSuccess,
   logInfo,
@@ -54,15 +57,13 @@ const {
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
 const apiClient = new ApiClient(endpoint, token);
 
-const buildDir = "builds-exp"; // TODO: this will be a constant
-
 logInfo(`Starting build process for ${theme}`);
 log("1️⃣ building assets...");
 buildAssets(theme, () => {
   log("2️⃣ packaging theme...");
-  pack(theme, buildDir, (releaseDir, assetsDir) => {
+  pack(theme, BUCKET_ROOT_DIR, (releaseDir, assetsDir) => {
     log("3️⃣ creating theme bundle...");
-    bundle(theme, buildDir, releaseDir, assetsDir, () => {
+    bundle(theme, BUCKET_ROOT_DIR, releaseDir, assetsDir, () => {
       log("4️⃣ publishing theme...");
       upload(theme, releaseDir, assetsDir, apiClient, (files) => {
         files.forEach(f => logUpload(f));
