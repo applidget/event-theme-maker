@@ -5,7 +5,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 
 module.exports = (env) => ({
-  mode: "production",
+  mode: env.mode || "production",
   stats: "minimal",
   infrastructureLogging: { level: "error" },
   entry: [
