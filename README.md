@@ -13,7 +13,7 @@ Then run:
 - `release help`
 - `validate help`
 
-All arguments can be set by a json conlfig file or by an environment variable prefixed by `ETM_`.
+All arguments can be set by a json config file or by an environment variable prefixed by `ETM_`.
 
 ## How it works ?
 
