@@ -38,6 +38,8 @@ When you run `validate` we perform a bunch of validations to help you build them
 
 - You will need a **theme developer account on Eventmaker** ! Contact-us 😊.
 - The port 9999 must be free (the webpack dev server will run on this port)
+- `tar` must be installed (for the release command)
+- The release command can only be used in a git repository (it will run `git rev` to version assets)
 - This should be used in a repository that follows the structure for Eventmaker themes:
 
 
