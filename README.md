@@ -33,7 +33,6 @@ When you run `release`
 
 When you run `validate` we perform a bunch of validations to help you build themes that runs nicely on Eventmaker
 
-
 ## Requirements
 
 - You will need a **theme developer account on Eventmaker** ! Contact-us 😊.
