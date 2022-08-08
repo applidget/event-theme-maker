@@ -6,6 +6,7 @@ const createRepository = require("../lib/new_repository/create_repository");
 const ensureThemeExists = require("../lib/new_repository/ensure_theme_exists");
 const extractBaseTheme = require("../lib/new_repository/extract_base_theme");
 const copySharedAssets = require("../lib/new_repository/copy_shared_assets");
+const injectDependencies = require("../lib/new_repository/inject_dependencies");
 const performInitialCommit = require("../lib/new_repository/perform_initial_commit");
 
 const { logSuccess, log } = require("../lib/utils/log");
@@ -38,6 +39,7 @@ ensureThemeExists(baseTheme);
 createRepository(path);
 extractBaseTheme(baseTheme, path);
 copySharedAssets(path);
+injectDependencies(baseTheme, path);
 performInitialCommit(path, () => {
   summary();
 });
