@@ -1,0 +1,13 @@
+{
+  "name": "--repository_name--",
+  "private": "true",
+  "dependencies": {},
+  "devDependencies": {
+    "event-theme-maker": "^--etm_version--"
+  },
+  "scripts": {
+    "validate": "node ./node_modules/event-theme-maker/bin/validate.js",
+    "start": "node ./node_modules/event-theme-maker/bin/start.js",
+    "release": "node ./node_modules/event-theme-maker/bin/release.js"
+  }
+}

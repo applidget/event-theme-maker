@@ -8,7 +8,8 @@
   "bin": {
     "start": "./bin/start.js",
     "release": "./bin/release.js",
-    "validate": "./bin/validate.js"
+    "validate": "./bin/validate.js",
+    "new_repository": "./bin/new_repository"
   },
   "engines": {
     "node": ">= 16.16.0"
