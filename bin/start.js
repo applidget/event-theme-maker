@@ -76,8 +76,7 @@ const {
   port,
   local,
   watchPath,
-  eventmakerLocalEndpoint,
-  ngrokToken
+  eventmakerLocalEndpoint
 } = argv;
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
