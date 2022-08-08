@@ -26,6 +26,8 @@ const {
 } = require("../lib/utils/log");
 
 const argv = yargs(hideBin(process.argv))
+  .config()
+  .env("ETM")
   .options({
     "token": {
       alias: "t",
@@ -63,8 +65,6 @@ const argv = yargs(hideBin(process.argv))
       default: "http://localhost:3000"
     }
   })
-  .config()
-  .env("ETM")
   .help("help")
   .wrap(null)
   .argv;

@@ -47,6 +47,7 @@ When you run `new_theme` we create an empty theme based on the one you chose.
 
 ```
 /
+  shared/
   themes/
     my-theme-1/
       assets/
