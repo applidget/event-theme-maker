@@ -12,6 +12,7 @@ Then run:
 - `start help`
 - `release help`
 - `validate help`
+- `new_theme help`
 
 All arguments can be set by a json config file or by an environment variable prefixed by `ETM_`.
 
@@ -32,6 +33,8 @@ When you run `release`
 - Your theme is available to use on your production event on Eventmaker
 
 When you run `validate` we perform a bunch of validations to help you build themes that runs nicely on Eventmaker
+
+When you run `new_theme` we create an empty theme based on the one you chose.
 
 ## Requirements
 
