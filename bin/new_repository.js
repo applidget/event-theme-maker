@@ -47,7 +47,9 @@ performInitialCommit(path, () => {
 const summary = () => {
   logSuccess(`New customer repository created at ${path} 😊.`);
   log("  1️⃣ go in the repository and run npm|yarn install");
-  log(`  2️⃣ create a new theme npm|yarn run create-theme -- -n my-first-new-theme -b ${baseTheme}`);
+  log(`  2️⃣ create a new theme npm|yarn run create-theme -- -n my-first-theme -b ${baseTheme}`);
   log("  3️⃣ share this repository with your customer by pushing on their remote Git");
-  log("  4️⃣ ask an Eventmaker developer to allow theme development to your customer 🚀");
+  log("  4️⃣ ask an Eventmaker developer to allow theme development to your customer");
+  log("  5️⃣ get started coding: npm|yarn run start -- -e YOUR_EVENT_ID -t YOUR_TOKEN -n my-first-theme");
+  log("  6️⃣ once you are finished, publish your theme: npm|yarn run release -- -t YOUR_TOKEN -n my-first-theme" 🚀);
 }
