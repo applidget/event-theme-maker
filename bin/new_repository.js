@@ -17,7 +17,7 @@ const argv = yargs(hideBin(process.argv))
   .options({
     "baseTheme": {
       alias: "b",
-      describe: "The theme themes of this repository will be based on",
+      describe: "The base theme other themes of this repository will be based on",
       demandOption: true
     },
     "path": {
