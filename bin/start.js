@@ -8,6 +8,7 @@ const startDevServer = require("../lib/start/start_dev_server");
 const watchFileSystem = require("../lib/start/watch_file_system");
 const syncFiles = require("../lib/start/utils/sync_files");
 const stringify = require("../lib/utils/stringify");
+const ensureThemeNotLocked = require("../lib/utils/ensure_theme_not_locked");
 
 const ApiClient = require("../lib/api_client");
 
@@ -187,6 +188,7 @@ logInfo("starting development environment...");
 
 fetchTheme(theme => {
   updateWebsiteThemeIfNeeded(theme, (theme) => {
+    ensureThemeNotLocked(theme);
     startDevServer(theme, () => {
       startLocalServer(theme, apiClient, { port, expose: !local, devServer }, host => {
         performInitialSync(theme, host, () => {

@@ -12,6 +12,8 @@ const {
   log
 } = require("../lib/utils/log");
 
+const { isLocked } = require("../lib/utils/lock_file");
+const ensureThemeNotLocked = require("../lib/utils/ensure_theme_not_locked");
 const liquidIsValid = require("../lib/validations/liquid_is_valid");
 const schemasAreValidJson = require("../lib/validations/schemas_are_valid_json");
 const specsLinkToExistingResources = require("../lib/validations/specs_link_to_existing_resources");
@@ -33,10 +35,11 @@ const argv = yargs(hideBin(process.argv))
 
 const themes = () => {
   if (argv.theme) {
+    ensureThemeNotLocked(argv.theme);
     return [argv.theme];
   }
 
-  return fs.readdirSync("./themes");
+  return fs.readdirSync("./themes").filter(t => !isLocked(t));
 }
 
 themes().forEach(theme => {

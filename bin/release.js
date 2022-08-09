@@ -7,10 +7,13 @@ const pack = require("../lib/release/pack");
 const bundle = require("../lib/release/bundle");
 const upload = require("../lib/release/upload");
 const ApiClient = require("../lib/api_client");
+const ensureThemeNotLocked = require("../lib/utils/ensure_theme_not_locked");
+
 const {
   API_ENDPOINT,
   BUCKET_ROOT_DIR
 } = require("../lib/constants");
+
 const {
   logSuccess,
   logInfo,
@@ -56,6 +59,8 @@ const {
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
 const apiClient = new ApiClient(endpoint, token);
+
+ensureThemeNotLocked(theme);
 
 logInfo(`Starting build process for ${theme}`);
 log("1️⃣ building assets...");
