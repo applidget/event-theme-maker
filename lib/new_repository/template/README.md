@@ -85,7 +85,7 @@ You will need an account on Eventmaker and you should contact Eventmaker so they
 
 Run `yarn create-theme -n theme-name -b BASE_THEME` to create a new theme.
 
-Eventmaker themes can depend on other themes. We will provide you with existing Eventmaker themes so you don't have to start from scratch. **Do not edit thoses themes**. Instead run the command above and you can start on a clean state.
+Eventmaker themes can depend on other themes. We will provide you with existing Eventmaker themes so you don't have to start from scratch. **Do not edit thoses themes**. Instead run the command above and you can start on a clean state. The base themes you are building on will have a `.locked` file at their root.
 
 ### 3️⃣ Start
 
