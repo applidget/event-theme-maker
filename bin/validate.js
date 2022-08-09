@@ -19,13 +19,14 @@ const specsNoDuplicate = require("../lib/validations/specs_no_duplicate");
 const exhaustiveLocales = require("../lib/validations/exhaustive_locales");
 
 const argv = yargs(hideBin(process.argv))
+  .env("ETM")
+  .config()
   .options({
     "theme": {
       alias: "n",
       describe : "The name of the theme to validate. If not specified, all themes will be validated (in the themes/ directory)"
     },
   })
-  .config()
   .help("help")
   .wrap(null)
   .argv;
