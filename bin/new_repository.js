@@ -51,5 +51,5 @@ const summary = () => {
   log("  3️⃣ share this repository with your customer by pushing on their remote Git");
   log("  4️⃣ ask an Eventmaker developer to allow theme development to your customer");
   log("  5️⃣ get started coding: npm|yarn run start -- -e YOUR_EVENT_ID -t YOUR_TOKEN -n my-first-theme");
-  log("  6️⃣ once you are finished, publish your theme: npm|yarn run release -- -t YOUR_TOKEN -n my-first-theme" 🚀);
+  log("  6️⃣ once you are finished, publish your theme: npm|yarn run release -- -t YOUR_TOKEN -n my-first-theme 🚀");
 }
