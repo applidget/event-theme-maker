@@ -37,7 +37,7 @@ When you run `validate` we perform a bunch of validations to help you build them
 
 When you run `new_theme` we create an empty theme based on the one you chose.
 
-Only a member of Eventmaker's team should run `new_repository`. It's used to create a new repository for customers wishing to ddevelop their own Eventmaker themes 😊.
+Only a member of Eventmaker's team should run `new_repository`. It's used to create a new repository for customers wishing to develop their own Eventmaker themes 😊.
 
 ## Requirements
 
