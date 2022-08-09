@@ -144,17 +144,18 @@ const startAutoSync = (theme, host) => {
 }
 
 const updateWebsiteThemeIfNeeded = (theme, cb) => {
-  if (!argvTheme) {
+  if (!argvTheme || argvTheme === theme) {
     // by default use current website theme
     return cb(theme);
   }
 
-  // argv theme and theme are different, we will force performming the initial sync
-  initialSync = true;
   apiClient.changeWebsiteTheme(argvTheme, (ok, response) => {
     if (!ok) {
       logFatal(`unable to change website theme ${stringify(response)}`);
     }
+
+    // argv theme and theme are different, we will force performming the initial sync
+    initialSync = true;
 
     cb(argvTheme);
   });
