@@ -26,8 +26,8 @@ const {
 } = require("../lib/utils/log");
 
 const argv = yargs(hideBin(process.argv))
-  .config()
   .env("ETM")
+  .config()
   .options({
     "token": {
       alias: "t",
@@ -44,6 +44,10 @@ const argv = yargs(hideBin(process.argv))
       describe: "Whether or not an initial theme syncing will be performed",
       boolean: true,
       default: false
+    },
+    "theme": {
+      alias: "n",
+      describe: "The theme to work on. By default, the current event theme will be used. If the theme here is different than the website one, a full sync will be performed automatically"
     },
     "port": {
       alias: "p",
@@ -72,12 +76,14 @@ const argv = yargs(hideBin(process.argv))
 const {
   token,
   eventId,
-  initialSync,
+  theme: argvTheme,
   port,
   local,
   watchPath,
   eventmakerLocalEndpoint
 } = argv;
+
+let { initialSync } = argv; // this one may change if fetched theme != argTheme
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
 const apiClient = new ApiClient(endpoint, token, eventId);
@@ -137,6 +143,24 @@ const startAutoSync = (theme, host) => {
   });
 }
 
+const updateWebsiteThemeIfNeeded = (theme, cb) => {
+  if (!argvTheme || argvTheme === theme) {
+    // by default use current website theme
+    return cb(theme);
+  }
+
+  apiClient.changeWebsiteTheme(argvTheme, (ok, response) => {
+    if (!ok) {
+      logFatal(`unable to change website theme ${stringify(response)}`);
+    }
+
+    // argv theme and theme are different, we will force performming the initial sync
+    initialSync = true;
+
+    cb(argvTheme);
+  });
+}
+
 const summary = (theme, host) => {
   log("✅ everything is ready 😊");
   log(`  - working on ${theme} on event ${eventId}`);
@@ -162,11 +186,13 @@ const summary = (theme, host) => {
 logInfo("starting development environment...");
 
 fetchTheme(theme => {
-  startDevServer(theme, () => {
-    startLocalServer(theme, apiClient, { port, expose: !local, devServer }, host => {
-      performInitialSync(theme, host, () => {
-        startAutoSync(theme, host);
-        summary(theme, host);
+  updateWebsiteThemeIfNeeded(theme, (theme) => {
+    startDevServer(theme, () => {
+      startLocalServer(theme, apiClient, { port, expose: !local, devServer }, host => {
+        performInitialSync(theme, host, () => {
+          startAutoSync(theme, host);
+          summary(theme, host);
+        });
       });
     });
   });

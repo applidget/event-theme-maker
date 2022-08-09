@@ -19,8 +19,8 @@ const specsNoDuplicate = require("../lib/validations/specs_no_duplicate");
 const exhaustiveLocales = require("../lib/validations/exhaustive_locales");
 
 const argv = yargs(hideBin(process.argv))
-  .config()
   .env("ETM")
+  .config()
   .options({
     "theme": {
       alias: "n",

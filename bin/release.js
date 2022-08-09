@@ -19,8 +19,8 @@ const {
 } = require("../lib/utils/log");
 
 const argv = yargs(hideBin(process.argv))
-  .config()
   .env("ETM")
+  .config()
   .options({
     "theme": {
       alias: "n",

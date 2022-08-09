@@ -6,8 +6,8 @@ const createTheme = require("../lib/new_theme/create_theme");
 const { logSuccess } = require("../lib/utils/log");
 
 const argv = yargs(hideBin(process.argv))
-  .config()
   .env("ETM")
+  .config()
   .options({
     "theme": {
       alias: "n",
