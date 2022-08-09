@@ -13,6 +13,7 @@ Then run:
 - `release help`
 - `validate help`
 - `new_theme help`
+- `new_repository help`
 
 All arguments can be set by a json config file or by an environment variable prefixed by `ETM_`.
 
@@ -36,6 +37,8 @@ When you run `validate` we perform a bunch of validations to help you build them
 
 When you run `new_theme` we create an empty theme based on the one you chose.
 
+Only a member of Eventmaker's team should run `new_repository`. It's used to create a new repository for customers wishing to develop their own Eventmaker themes 😊.
+
 ## Requirements
 
 - You will need a **theme developer account on Eventmaker** ! Contact-us 😊.
@@ -47,6 +50,7 @@ When you run `new_theme` we create an empty theme based on the one you chose.
 
 ```
 /
+  shared/
   themes/
     my-theme-1/
       assets/
