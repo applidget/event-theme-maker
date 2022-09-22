@@ -61,7 +61,7 @@ You can access these settings from a liquid with `settings.id_of_setting` (e.g. 
 
 The default settings when creating a website with this theme.
 
-In order to have directly a functional website you can choose the default settings, such as site colors, existing pages and sections and their content of each.
+In order to have directly a functional website you can set the default settings of your theme in this file.
 
 ## config-sections-groups.json
 
