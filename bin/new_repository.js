@@ -40,7 +40,7 @@ ensureThemeExists(baseTheme);
 
 const update = fs.existsSync(path);
 
-createRepository(path, { isUpdate: update });
+createRepository(path);
 extractBaseTheme(baseTheme, path);
 copySharedAssets(path);
 injectDependencies(baseTheme, path);
