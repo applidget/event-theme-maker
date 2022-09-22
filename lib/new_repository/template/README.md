@@ -61,6 +61,8 @@ my-theme-1/              => root folder must have the same name than the theme
   specs.yml              => file describing your theme
 ```
 
+[Full documentation about theming environement](docs/theming.md)
+
 ## Working on a theme
 
 You can use both `yarn` or `npm`. In the readme we will use `yarn`, if you use `npm`, remember to escape command line arguments:
