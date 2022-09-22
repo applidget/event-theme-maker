@@ -335,7 +335,7 @@ You have access to different Liquid variables:
 
 ## Global variables
 
-Here is the list of Liquid variables available on the website.
+Here is the list of Liquid variables available:
 
     {
       "page" => {
