@@ -79,7 +79,8 @@ If you want to have dynamic content in a translation it will look like this: `"k
 
 # Assets
 
-This folder contains the resources of the theme Css and JS files they are compiled by Webpacker and can make dynamic calls to files contained in other folder of the repo by @import (Css) or import (JS).
+This folder contains the resources of the theme CSS and JS files. They are compiled by Webpack and can make dynamic calls to files contained in other folder of the repo by @import (CSS) or import (JS).
+Webpack entry point is `main.js` and `main.scss`.
 
 # Layout
 
