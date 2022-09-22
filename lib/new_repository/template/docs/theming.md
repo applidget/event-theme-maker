@@ -267,7 +267,7 @@ If `checkbox_1` == true OR `checkbox_2` == true
 
 ### Blocks
 
-Blocks are elements that the user of the customization interface can add within the available limit (if `max_blocks` is defined). This allows to create elements of the same nature several times (e.g. in the section `feature-colums.liquid` the blocks are used to create the different columns. We can make 1, 2, 4, or more and manage their display without making several sections).
+Blocks are elements that the user of the builder can add within the available limit (if `max_blocks` is defined). This allows to create elements of the same nature several times (e.g. in the section `feature-colums.liquid` the blocks are used to create the different columns. We can make 1, 2, 4, or more and manage their display without making several sections).
 
 type: "text_block"` allows to make presets so that a certain number of blocks are created when adding the section to a page.
 
