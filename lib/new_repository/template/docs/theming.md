@@ -51,23 +51,23 @@ When adding a section for example, do not forget to add it in the YAML so that i
 
 This file allows you to configure the execution of the Yarn script as well as to install theme specific dependencies during Webpack builds.
 
-## config\main_settings_schema.json
+## config/main_settings_schema.json
 
 This file allows you to create global parameters of the site (social networks, title color, background color, text color, section spacing, font, etc...). Configurations that are not specific to a section and/or that must appear in the layout must be defined in this file.
 
 You can access these settings from a liquid with `settings.id_of_setting` (e.g. to call the text color of the website: `settings.color_body_text`).
 
-## config\presets.fr.json and presets.en.json
+## config/presets.fr.json and presets.en.json
 
 The default settings when creating a website with this theme.
 
 In order to have directly a functional website you can set the default settings of your theme in this file.
 
-## config-sections-groups.json
+## config/sections-groups.json
 
 This file allows you to create different groups of sections to group and order them. When adding a section via the builder, the different sections are then grouped together (basic, media, registration, etc.).
 
-## configtranslations.json
+## config/translations.json
 
 This file allows you to configure all the texts which are not customizable, but which must be translated into the language of the website.
 
