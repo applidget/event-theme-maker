@@ -75,7 +75,7 @@ Each language is represented by its ISO key (en for english, fr for french, it f
 
 Translations can be used in liquid files by doing `t.key_of_translation`.
 
-If you want to have dynamic content in a translation it will look like this: `"key": "My name is %{ variable_text }"`. For this to work there must also be a liquid variable in the file where this translation is called whose value is the changing part (`{% capture variable_text %}{{ guest.first_name }}{% endcapture %}`).
+If you need dynamic content in a translation use the `%{}` placeholder: `"key": "My name is %{ variable_text }"`. The variable text must be a liquid variable. For example: `{% capture variable_text %}{{ guest.first_name }}{% endcapture %}`).
 
 # Assets
 
