@@ -65,7 +65,7 @@ In order to have directly a functional website you can set the default settings 
 
 ## config-sections-groups.json
 
-This file allows you to create different groups of sections in order to order them. When adding a section via the customization interface, the different sections are then grouped together (basic, media, registration, etc.).
+This file allows you to create different groups of sections to group and order them. When adding a section via the builder, the different sections are then grouped together (basic, media, registration, etc.).
 
 ## configtranslations.json
 
