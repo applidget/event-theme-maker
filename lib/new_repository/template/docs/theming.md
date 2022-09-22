@@ -320,8 +320,7 @@ Snippets are code fragments that can be used in several sections or layouts. To 
 
 To do this you just have to do `{% include "filename_of_the_snippet" %}`.
 
-You can also pass parameters to this snippet: `{% include "filename_of_the_snippet", section_settings: section.settings %}`.
-And so in the snippet you have access to this `section_settings` parameter.
+You can also pass parameters to this snippet: `{% include "filename_of_the_snippet", section_settings: section.settings %}` and access them in the snippet with `section_settings`.
 
 Unlike sections, snippets do not have a schema.
 
