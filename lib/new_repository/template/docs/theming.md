@@ -33,7 +33,7 @@ This is a starting point for an Eventmaker Website theme.
 
 # Working on a theme
 
-The language used is the "Liquid" developed by Shopify, a doc is available [here](https://shopify.github.io/liquid).
+The language used is the "Liquid" developed by Shopify. Documentation is available [here](https://shopify.github.io/liquid).
 
 You have access to the parameters of the URL with the liquid variable `url_params` (ex: with https://mywebsite.eventmaker.io/index?superParams=true to know the value of `superParams` we will do `url_params.superParams` which will return a String `true`).
 
