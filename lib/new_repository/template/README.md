@@ -39,6 +39,8 @@ This repository can host several Eventmaker themes. The repository structure is:
 
 Make sure you respect the theme structure.
 
+[Full documentation about website's theming environement (in french)](docs/theming-fr.md)
+
 ## Theme structure
 
 Zooming in to a theme:
