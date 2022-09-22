@@ -7,7 +7,7 @@ This is a starting point for an Eventmaker Website theme.
     ├── themes
     │   ├── standard
     |   |   ├── assets
-    |   |   |   ├── // fichier d'assets
+    |   |   |   ├── // asset file
     |   |   |   ├── ...
     |   |   ├── config
     |   |   |   ├── main_settings_schema.json
@@ -16,16 +16,16 @@ This is a starting point for an Eventmaker Website theme.
     |   |   |   ├── sections-groups.json
     |   |   |   ├── translations.json
     |   |   ├── layouts
-    |   |   |   ├── // fichier de layout
+    |   |   |   ├── // layout file
     |   |   |   ├── ...
     |   |   ├── sections
-    |   |   |   ├── // fichier de section
+    |   |   |   ├── // section file
     |   |   |   ├── ...
     |   |   ├── snippets
-    |   |   |   ├── // fichier de snippet
+    |   |   |   ├── // snippet file
     |   |   |   ├── ...
     |   |   ├── templates
-    |   |   |   ├── // fichier pour les pages d'erreurs
+    |   |   |   ├── // file for error pages
     |   |   |   ├── ...
     |   |   ├── package.json
     |   |   ├── specs.yml
@@ -33,71 +33,71 @@ This is a starting point for an Eventmaker Website theme.
 
 # Working on a theme
 
-Le language utilisé est le "Liquid" développé par Shopify, une doc est disponible [ici](https://shopify.github.io/liquid).
+The language used is the "Liquid" developed by Shopify, a doc is available [here](https://shopify.github.io/liquid).
 
-Vous avez accès aux paramètres de l'URL avec la variable liquid `url_params` (ex: avec https://www.monsite.eventmaker.io/index?superParams=true pour connaitre la valeur de `superParams` on fera `url_params.superParams` qui renverra une String `true`).
+You have access to the parameters of the URL with the liquid variable `url_params` (ex: with https://mywebsite.eventmaker.io/index?superParams=true to know the value of `superParams` we will do `url_params.superParams` which will return a String `true`).
 
 # Config
 
 ## spec.yml
 
-Ce fichier de configuration est utilisé pour charger le thème ainsi que lors des mises à jour de celui-ci.
+This configuration file is used to load the theme as well as when updating it.
 
-Il recense les chemins vers les fichiers du thème (sections, snippets, presets, traductions, layouts, etc...).
+It lists the paths to the theme files (sections, snippets, presets, translations, layouts, etc...).
 
-Lors de l'ajout d'une section par exemple, il ne faut pas oublier de l'ajouté dans le YAML pour qu'elle puisse être séléctionnée via l'interface de personnalisation du site web.
+When adding a section for example, do not forget to add it in the YAML so that it can be selected via the website customization interface.
 
 ## package.json
 
-Ce fichier permet de configurer l'exécution des script Yarn ainsi que d'installer des dépendances spécifiques au thèmes lors des builds Webpack.
+This file allows you to configure the execution of the Yarn script as well as to install theme specific dependencies during Webpack builds.
 
 ## config\main_settings_schema.json
 
-Ce fichier permet de créer les paramètres généraux du site (réseaux sociaux, couleur des titres, couleur du fond, couleur du texte, espacement des sections, police de caractères, etc...). Tout ce qui n'est pas propre à une seule section et/ou qui doit apparaitre dans le layout devra exister ici.
+This file allows you to create the general parameters of the site (social networks, title color, background color, text color, section spacing, font, etc...). Everything that is not specific to a single section and/or that must appear in the layout must exist here.
 
-Pour réutiliser ces paramètres dans le HTML il faut faire `settings.id_of_setting` (ex: pour appeler la couleur du texte du site web: `settigns.color_body_text`).
+To reuse these settings in the HTML you need to do `settings.id_of_setting` (e.g. to call the text color of the website: `settigns.color_body_text`).
 
-## config\presets.fr.json et presets.en.json
+## config\presets.fr.json and presets.en.json
 
-Il s'agit des paramètres par défaut à la création d'un site web avec ce thème.
+These are the default settings when creating a website with this theme.
 
-Afin d'avoir directement un site web fonctionel vous pouvez choisir les paramètres par défaut, comme les couleurs du site, les pages existantes et les sections présentent sainsi que leur contenu de chacune.
+In order to have directly a functional website you can choose the default settings, such as site colors, existing pages and sections and their content of each.
 
-## config\sections-groups.json
+## config-sections-groups.json
 
-Ce fichier permet de créer différents groupes de sections pour pouvoir les ordonners. Lors de l'ajout d'une section via l'interface de personnalisation les différentes sections sont alors regroupées par groupe (basique, média, inscription, etc...).
+This file allows you to create different groups of sections in order to order them. When adding a section via the customization interface, the different sections are then grouped together (basic, media, registration, etc.).
 
-## config\translations.json
+## configtranslations.json
 
-Ce fichier permet de configurer tous les textes qui ne sont pas personnalisables, mais qui doivent être traduit dans la langue du site web.
+This file allows you to configure all the texts which are not customizable, but which must be translated into the language of the website.
 
-Chaque langue est représenté par sa clé ISO (fr pour français, it pour italien, etc...) et chaque traduction est sous la forme `"clé": "valeur"`.
+Each language is represented by its ISO key (en for english, fr for french, it for italian, etc...) and each translation is in the form `"key": "value"`.
 
-Les traductions peuvent être utiliser partout sur le site en faisant `t.key_of_translation`.
+Translations can be used anywhere on the site by doing `t.key_of_translation`.
 
-Si vous souhaitez avoir un contenu dynamique dans une traduction celle-ci se présentera comme ceci: `"clé": "Mon nom est %{ texte_variable }"`. Pour que cela fonctionne il faut aussi que dans le fichier où cette traduction est appelée il existe une variable liquid dont la valeur est la partie changeante (`{% capture texte_variable %}{{ guest.first_name }}{% endcapture %}`).
+If you want to have dynamic content in a translation it will look like this: `"key": "My name is %{ variable_text }"`. For this to work there must also be a liquid variable in the file where this translation is called whose value is the changing part (`{% capture variable_text %}{{ guest.first_name }}{% endcapture %}`).
 
 # Assets
 
-Ce dossier contient les ressources du thème fichiers Css et JS ils sont compilés par Webpacker et peuvent faire des appel dynamique à des fichiers contenu dans d'autre dossier du repo par @import (Css) ou import (JS).
+This folder contains the resources of the theme Css and JS files they are compiled by Webpacker and can make dynamic calls to files contained in other folder of the repo by @import (Css) or import (JS).
 
 # Layout
 
-Les layouts sont des squelettes pour chaque page du site. On y retrouve les éléments qui doivent être présent à chaque fois (CSS, Js, Favicon, etc...).
+Layouts are skeletons for each page of the site. It contains the elements that must be present at each time (CSS, Js, Favicon, etc. ...).
 
 # Sections
 
-Les sections sont les éléments que l'on peut ajouter à une page via l'interface de personnalisation du site web.
+The sections are the elements that can be added to a page via the customization interface of the website.
 
-Chaque section est constituée de deux parties distinctes: le code HTML et le schéma.
+Each section consists of two distinct parts: the HTML code and the schema.
 
-## Le code HTML d'une section
+## HTML code of a section
 
-Dans le code HTML vous pouvez utiliser les paramètres généraux `settings.id_of_the_setting`. Mais aussi et surtout les paramètres de la section créer dans le schéma: `section.settings.id_of_the_section_setting`.
+In the HTML code you can use the general parameters `settings.id_of_the_setting`. But also and especially the settings of the section created in the schema: `section.settings.id_of_the_section_setting`.
 
-## Le schéma d'une section
+## Schema of a section
 
-Le schéma nous donne des informations sur la section et nous permet de créer les options que l'on souhaite pour personnalisé la section.
+The schema gives us information about the section and allows us to create the options we want to customize the section.
 
     {% schema %}
       {
@@ -106,27 +106,27 @@ Le schéma nous donne des informations sur la section et nous permet de créer l
     {% endschema %}
 
 
-Les premiers éléments du schéma sont des informations générales sur la section.
+The first elements of the diagram are general information about the section.
 
     {% schema %}
       {
         "name": "English title - show on the website builder",
         "name_translations": { "fr": "Titre en français - afficher dans l'interface de personnalisation du site web" },
-        "icon": "fa fa-font", // Classes Font-awesome pour l'icone afficher dans l'interface de personnalisation. Ruby gems font-awesome-rails-4.7.0.5
+        "icon": "fa fa-font", // Font-awesome classes for the icon display in the customization interface. https://fontawesome.com/v4/icons/
         "hidden_from_user": false,
-        "group_key": "basic", // Dans quel groupe la section sera affichée
-        "group_rank": 1000, // Son ordre dans le groupe
+        "group_key": "basic", // In which group the section will be displayed
+        "group_rank": 1000, // Its order in the group
         "settings": [
           ...
         ]
       }
     {% endschema %}
 
-### Les settings
+## Settings
 
-Comment se présentent les `settings` ?
+What are the `settings` looks like?
 
-`settings` est un tableau des différents paramètres de la section. De manière général un setting est présenté sous cette forme:
+The `settings` is a table of the different settings of the section. In general a setting is presented in this form:
 
     {
       "type": "text",
@@ -139,38 +139,38 @@ Comment se présentent les `settings` ?
       "default_translations": { "fr": "Titre" }
     }
 
-- `type` au choix parmi la liste suivante:
+- `type` to choose from the following list:
 
 | Type                    | Description |
 | ----------------------- | ----------- |
-| header                  | Renvois un titre pour une meilleure présentation des paramètres. |
-| text                    | Renvois un champ texte simple. |
-| paragraph               | Renvois un champ de type textarea. |
-| rte                     | Renvois un RTE. |
-| image\_picker           | Renvois un uploader d'image. |
-| select                  | Renvois une liste déroulante des options qui lui sont fournit. |
-| checkbox                | Renvois une case à cocher. |
-| color                   | Renvois une palette de choix de couleur. |
-| guest\_category\_picker | Renvois une liste déroulante des catégories de l'évènement. |
-| segments\_picker        | Renvois une liste déroulante des segments de l'évènement. |
-| website\_page\_picker   | Renvois une liste déroulante des pages du site. |
-| guest\_field\_picker    | Renvois une liste déroulante des champs de participants. |
+| header                  | Returns a title for a better presentation of the parameters.
+| text                    | Returns a simple text field.
+| paragraph               | Returns a text field.
+| rte                     | Returns an RTE.
+| image\_picker           | Returns an image uploader.
+| select                  | Returns a drop-down list of options provided to it.
+| checkbox                | Returns a checkbox. |
+| color                   | Returns a palette of color choices.
+| guest\_category\_picker | Returns a drop-down list of event categories.
+| segments\_picker        | Returns a drop-down list of event segments.
+| website\_page\_picker   | Returns a drop-down list of site pages.
+| guest\_field\_picker    | Returns a drop-down list of attendee fields.
 
-- `id` est la clé utilisée dans le code HTML pour utiliser la valeur de ce setting: `section.settings.title`.
-- `label` est par défaut en anglais.
-- `label_translations` est un tableau de traduction. La plateforme est disponible en français et en anglais uniquement.
-- `info` information afficher sous le paramètre, si le back office est pas défaut en anglais.
-- `info_translations` fonctionne de la même façon que `label_translation`.
-- `default` est la valeur remplis par défaut si le back office est en anglais.
-- `default_translations` fonctionne de la même façon que `label_translation`.
+- `id` is the key used in the HTML code to use the value of this setting: `section.settings.title`.
+- `label` defaults to English.
+- `label_translations` is a translation array. The platform is available in English and French only.
+- `info` information display under the parameter, if the back office is in English.
+- `info_translations` works the same way as `label_translation`.
+- `default` is the default value filled in if the back office is in English.
+- `default_translations` works the same way as `label_translation`.
 
-#### Spécificitées
+#### Specificities
 
-Certains types de setting on besoin de plus qu'un `label`, un `id` et un `type` pour fonctionner.
+Some setting types need more than a `label`, an `id` and a `type` to work.
 
-- `select` : les settings de type _select_ on besoin d'options pour fonctionner. L'option vide est générée automatiquement.
+- `select` : settings of type _select_ need options to work. The empty option is generated automatically.
 
-Exemple:
+Example:
 
     {
       "type": "select",
@@ -192,14 +192,14 @@ Exemple:
       ]
     }
 
-- `checkbox` : sa valeur par défaut sera un booléen (`true` / `false`), pas une String.
-- `color` : sa valeur par défaut doit être un code héxadécimal.
+- `checkbox`: its default value will be a boolean (`true` / `false`), not a String.
+- `color` : its default value must be a hexadecimal code.
 
-#### Condition d'affichage - Show_if
+#### Display condition - Show_if
 
-À chaque setting il est possible d'ajouter une condition d'affichage (`show_if`).
+To each setting it is possible to add a display condition (`show_if`).
 
-Par exemple on laissera la possibilité de personnaliser la **Couleur du bouton** seulement si la checkbox **"Appliquer un style personnalisé"** est cochée:
+For example we will allow the possibility to customize the **Color of the button** only if the checkbox **"Apply a custom style "** is checked:
 
     {
       "type": "checkbox",
@@ -225,9 +225,9 @@ Par exemple on laissera la possibilité de personnaliser la **Couleur du bouton*
       ]
     }
 
-Il est possible de faire des conditions multiples avec des ET :
+It is possible to make multiple conditions with AND :
 
-Si `checkbox_1` == true ET `checkbox_2` == true
+If `checkbox_1` == true AND `checkbox_2` == true
 
     "show_if": [
       [
@@ -244,9 +244,9 @@ Si `checkbox_1` == true ET `checkbox_2` == true
       ]
     ]
 
-Mais aussi des OU:
+But also ORs:
 
-Si `checkbox_1` == true OU `checkbox_2` == true
+If `checkbox_1` == true OR `checkbox_2` == true
 
     "show_if": [
       [
@@ -265,13 +265,13 @@ Si `checkbox_1` == true OU `checkbox_2` == true
       ]
     ]
 
-### Les blocs
+### Blocks
 
-Les blocs sont des éléments que l'utilisateur de l'interface de personnalisation peuvent ajouter dans la limite disponible (si `max_blocks` est définit). Cela permet de créer des éléments de même nature plusieurs fois (ex: dans la section `feature-colums.liquid` les blocs sont utilisé pour créer les différentes colones. Nous pouvons en faire 1, 2, 4, ou plus et gérer leur affichage sans faire plusieurs sections).
+Blocks are elements that the user of the customization interface can add within the available limit (if `max_blocks` is defined). This allows to create elements of the same nature several times (e.g. in the section `feature-colums.liquid` the blocks are used to create the different columns. We can make 1, 2, 4, or more and manage their display without making several sections).
 
-`"type": "text_block"` permet de faire des presets pour qu'un certain nombre de blocs soient créés au moment de l'ajout de la section à une page.
+type: "text_block"` allows to make presets so that a certain number of blocks are created when adding the section to a page.
 
-`display_property` prend comme valeur l'id d'un des settings de bloc pour en afficher la valeur dans l'interface de personnalisation (ex: `"display_property" : "title"` pour que le titre d'un bloc soit afficher pour le nommer et le retrouver plus facilement dans l'interface de personnalisation de la section).
+display_property` takes as value the id of one of the block settings to display its value in the customization interface (ex: `"display_property" : "title"` to display the title of a block to name it and find it more easily in the customization interface of the section).
 
     {% schema %}
       {
@@ -316,26 +316,26 @@ Les blocs sont des éléments que l'utilisateur de l'interface de personnalisati
 
 # Snippets
 
-Les snippets sont des fragments de codes utilisables dans plusieurs sections ou layouts. Pour éviter d'avoir plusieurs fois le même code dans différentes sections, vous pouvez inclure un snippet.
+Snippets are code fragments that can be used in several sections or layouts. To avoid having several times the same code in different sections, you can include a snippet.
 
-Pour cela il suffit de faire `{% include "filename_of_the_snippet" %}`.
+To do this you just have to do `{% include "filename_of_the_snippet" %}`.
 
-Vous pouvez aussi passer des paramètres à ce snippet: `{% include "filename_of_the_snippet", section_settings: section.settings %}`.
-Et ainsi dans le snippet vous avez accès à ce paramètre `section_settings`.
+You can also pass parameters to this snippet: `{% include "filename_of_the_snippet", section_settings: section.settings %}`.
+And so in the snippet you have access to this `section_settings` parameter.
 
-Contrairement aux sections, les snippets n'ont pas de schéma.
+Unlike sections, snippets do not have a schema.
 
 # Templates
 
-Le dossier `templates` contient des gabaries de pages pour différents cas (fonctionnement normal, erreur 401, erreur 404, Offline, etc...).
+The `templates` folder contains page templates for different cases (normal operation, 401 error, 404 error, Offline, etc...).
 
-# Variables Liquid
+# Liquid variables
 
-Vous avez accès à différentes variables Liquid:
+You have access to different Liquid variables:
 
-## Variables globales
+## Global variables
 
-Voici la liste des variables Liquid disponiblent sur le website.
+Here is the list of Liquid variables available on the website.
 
     {
       "page" => {
@@ -346,9 +346,9 @@ Voici la liste des variables Liquid disponiblent sur le website.
       },
       "settings" => {},
       "pages" => {},
-      "checkin_points" => [], // Tableau des accréditations de type checkin_points
-      "products" => [], // Tableau des accréditations de type products
-      "accommodations" => [], // Tableau des accréditations de type accommodations
+      "checkin_points" => [], // Accreditation array of checkin_points type
+      "products" => [], // Accreditation array of products type
+      "accommodations" => [], // Accreditation array of accommodations types
       "accesspoints_by_id" => {},
       "event" => {},
       "menus" => {
@@ -357,7 +357,7 @@ Voici la liste des variables Liquid disponiblent sur le website.
         "menu_items" => {
           "name" => "Let's go on Google",
           "type" => "external_link",
-          "localized_name" => "Allons sur Google",
+          "localized_name" => "Let's go on Google",
           "url" => "https://www.google.com/",
           "displayable?" => true
         },
@@ -367,7 +367,7 @@ Voici la liste des variables Liquid disponiblent sur le website.
       "current_resource" => {} 
     }
 
-## Évènement
+## Event
     {{ event }}
     {
       "title" => "My Event Name",
@@ -388,11 +388,11 @@ Voici la liste des variables Liquid disponiblent sur le website.
       "guest_categories" => {}
     }
 
-## Catégories de participants
+## Guests Categories
 
     {{ guest_category }}
     {
-      "name" => "Catégorie 1",
+      "name" => "Category 1",
       "id" => "5408886b4f6905cb83000002"
       "badge_enabled" => true,
       "traits" => {},
@@ -403,7 +403,7 @@ Voici la liste des variables Liquid disponiblent sur le website.
       "vat_amount" => 0.0
     }
 
-## Participants
+## Guests
     {{ guest }}
     {
       "uid" => "12345654324",
@@ -422,7 +422,7 @@ Voici la liste des variables Liquid disponiblent sur le website.
       "utm_source" => "",
       "utm_medium" => "",
       "utm_campaign" => "",
-      "event_id"  => "540f0cf24f6905a277000005",
+      "event_id" => "540f0cf24f6905a277000005",
       "guest_category_id" => "540992164f690552c7000004",
       "has_access_privileges" => true,
       "send_email_on_guest_category_change" => true,
@@ -468,11 +468,11 @@ Voici la liste des variables Liquid disponiblent sur le website.
       "exhibitor_roles" => []
     }
 
-# Liste de participants
+# Guests List
 
-Vous pouvez voir un exemple poussé de liste de participants dans le section `guests-list.liquid`.
+You can see an advanced example of a guest list in the `guests-list.liquid` section.
 
-Pour affiché la liste des guests de l'évènement il faut utiliser le tag `guests_paginate`:
+To display the list of guests of the event you have to use the tag `guests_paginate`:
 
     {% guests_paginate segment_id: section.settings.segment_id.first.segment_id, per_page: section.settings.per_page %}
       {% if paginate.total_entries > 0 %}
@@ -482,25 +482,25 @@ Pour affiché la liste des guests de l'évènement il faut utiliser le tag `gues
       {% endif %}
     {% endguests_paginate %}
 
-Le tag `guests_paginate` prend plusieurs arguments:
+The `guests_paginate` tag takes multiple arguments:
 
 | Argument        | Description |
 | --------------- | ----------- |
-| segment\_id      | Prend l'ID de segment contenant les participants que l'on souhaite afficher. Provient d'un setting de type `segments_picker` prenant `.first.segment_id` pour obtenir l'ID. |
-| per\_page        | Prend un chiffre entre 1 et 100 (si au delà de 100, seul les 100 premiers seront affichés). Par défaut à 20. |
+| segment\_id      | Takes the ID of the segment containing the guests you want to display. Comes from a `segments_picker` setting that takes `.first.segment_id` to get the ID. |
+| per\_page        | Takes a number between 1 and 100 (if over 100, only the first 100 will be displayed). Defaults to 20. |
 
-Dans ce tag vous avez aussi accès à plusieurs variables liquid:
+In this tag you also have access to several liquid variables:
 
 | Variable | Description |
 | -------- | ----------- |
-| paginate | Une hash renvoyant `current_page`, `previous_page`, `next_page`, `total_entries`, `total_pages`, `per_page`, `parts`. |
-| guests   | Un tableau des participants sur lequel on peut boucler pour les afficher. |
+| paginate | A hash returning `current_page`, `previous_page`, `next_page`, `total_entries`, `total_pages`, `per_page`, `parts`. |
+| guests   | An array of guests that can be looped over to display them. |
 
-# Liste des sessions du programme
+# List of program sessions
 
-Vous pouvez voir un exemple poussé de liste des session du programme dans le section `sessions-list.liquid`.
+You can see an extended example of a program session list in the `sessions-list.liquid` section.
 
-Pour affiché la liste des guests de l'évènement il faut utiliser le tag `sessions_list`:
+To display the list of guests of the event you have to use the tag `sessions_list`:
 
     {% sessions_list session_type: section.settings.session_type_global_filter, display_speakers: section.settings.display_speakers, display_exhibitors: section.settings.display_exhibitors %}
       {% for session in sessions %}
@@ -508,20 +508,20 @@ Pour affiché la liste des guests de l'évènement il faut utiliser le tag `sess
       {% endfor %}
     {% endsessions_list %}
 
-Le tag `sessions_list` prend plusieurs arguments:
+The `sessions_list` tag takes multiple arguments:
 
 | Argument            | Description |
 | ------------------- | ----------- |
-| session\_type       | Proviens d'un setting de type `accesspoint_session_type_picker`. Par défaut, affiche tous les types de session confondus. |
-| display\_speakers   | Si `true`, cela renvoit `speaker_roles`, donc une hash qui renvoit la liste des ids de participants étant conférenciers pour une session. |
-| display\_exhibitors | Si `true`, cela renvoit `exhibitor_roles`, donc une hash qui renvoit la liste des ids de participants étant exposants pour une session. |
+| session\_type       | Comes from a setting of type `accesspoint_session_type_picker`. By default, displays all session types combined. |
+| display\_speakers   | If `true`, this returns `speaker_roles`, so a hash that returns the list of guest ids that are speakers for a session. |
+| display\_exhibitors | If `true`, it returns `exhibitor_roles`, which is a hash that returns the list of guest ids that are exhibitors for a session. |
 
-Dans ce tag vous avez aussi accès à plusieurs variables liquid:
+In this tag you also have access to several liquid variables:
 
 | Variable          | Description |
 | ----------------- | ----------- |
-| sessions          | Un tableau des sessions sur lequel on peut boucler pour les afficher. |
-| speaker\_roles    | Si l'argument `display_speakers` de `sessions_list` est à `true`, cela retourne une hash qui renvoit la liste des ids de participants étant conférenciers pour une session. Sinon un tableau vide. |
-| exhibitor\_roles  | Si l'argument `display_exhibitors` de `sessions_list` est à `true`, cela retourne une hash qui renvoit la liste des ids de participants étant exposants pour une session. Sinon un tableau vide. |
-| guests            | Un tableau des participants sur lequel on peut boucler pour les afficher. |
-| thematics\_by\_id | Une hash des ids de thématiques renvoyant les thématiques. |
+| sessions          | A table of sessions that can be looped over to display them. |
+| speaker\_roles    | If the `display_speakers` argument to `sessions_list` is set to `true`, this returns a hash which lists the ids of guests who are speakers for a session. Otherwise an empty array. |
+| exhibitor\_roles  | If the `display_exhibitors` argument to `sessions_list` is set to `true`, this returns a hash that lists the guest ids that are exhibitors for a session. Otherwise an empty array. |
+| guests            | An array of guests that can be looped over to display them. |
+| thematics\_by\_id | A hash of the thematic ids returning the themes. |
