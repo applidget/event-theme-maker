@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const yargs = require("yargs/yargs");
+const fs = require("fs");
 const { hideBin } = require("yargs/helpers");
 
 const createRepository = require("../lib/new_repository/create_repository");
@@ -36,13 +37,22 @@ const {
 } = argv;
 
 ensureThemeExists(baseTheme);
+
+const update = fs.existsSync(path);
+
 createRepository(path);
 extractBaseTheme(baseTheme, path);
 copySharedAssets(path);
 injectDependencies(baseTheme, path);
-performInitialCommit(path, () => {
-  summary();
-});
+
+const updateSummary = () => {
+  logSuccess(`Repository updated ${path} 😊.`);
+  log(`WARNING: changes have been synchronized but not commited !`);
+  log(`  Go to ${path}, check the git status and review the changes !`);
+  log(`  The update may have broken the readme for example`);
+  log(`  The update did not take into account file deletions so make sure to manually cleanup !`);
+  log(`  Once everything looks good to you, commit and push 😊`);
+}
 
 const summary = () => {
   logSuccess(`New customer repository created at ${path} 😊.`);
@@ -52,4 +62,12 @@ const summary = () => {
   log("  4️⃣ ask an Eventmaker developer to allow theme development to your customer");
   log("  5️⃣ get started coding: npm|yarn run start -- -e YOUR_EVENT_ID -t YOUR_TOKEN -n my-first-theme");
   log("  6️⃣ once you are finished, publish your theme: npm|yarn run release -- -t YOUR_TOKEN -n my-first-theme 🚀");
+}
+
+if (!update) {
+  performInitialCommit(path, () => {
+    summary();
+  });
+} else {
+  updateSummary();
 }
