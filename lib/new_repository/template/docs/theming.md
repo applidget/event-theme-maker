@@ -41,7 +41,7 @@ URL parameters are accessible using the liquid variable `url_params` (ex: with h
 
 ## spec.yml
 
-This configuration file is used to load the theme as well as when updating it.
+The specs file describe the theme and its component. Component described in this file are your theme components.
 
 It lists the paths to the theme files (sections, snippets, presets, translations, layouts, etc...).
 
