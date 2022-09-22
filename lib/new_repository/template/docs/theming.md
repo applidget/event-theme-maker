@@ -73,7 +73,7 @@ This file allows you to configure all the texts which are not customizable, but 
 
 Each language is represented by its ISO key (en for english, fr for french, it for italian, etc...) and each translation is in the form `"key": "value"`.
 
-Translations can be used anywhere on the site by doing `t.key_of_translation`.
+Translations can be used in liquid files by doing `t.key_of_translation`.
 
 If you want to have dynamic content in a translation it will look like this: `"key": "My name is %{ variable_text }"`. For this to work there must also be a liquid variable in the file where this translation is called whose value is the changing part (`{% capture variable_text %}{{ guest.first_name }}{% endcapture %}`).
 
