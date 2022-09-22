@@ -154,7 +154,7 @@ The `settings` is a table of the different settings of the section. In general a
 | guest\_category\_picker | Returns a drop-down list of event categories.
 | segments\_picker        | Returns a drop-down list of event segments.
 | website\_page\_picker   | Returns a drop-down list of site pages.
-| guest\_field\_picker    | Returns a drop-down list of attendee fields.
+| guest\_field\_picker    | Returns a drop-down list of guest fields.
 
 - `id` is the key used in the HTML code to use the value of this setting: `section.settings.title`.
 - `label` defaults to English.
