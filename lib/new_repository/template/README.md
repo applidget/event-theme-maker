@@ -39,8 +39,6 @@ This repository can host several Eventmaker themes. The repository structure is:
 
 Make sure you respect the theme structure.
 
-[Full documentation about website's theming environement (in french)](docs/theming-fr.md)
-
 ## Theme structure
 
 Zooming in to a theme:
@@ -62,6 +60,8 @@ my-theme-1/              => root folder must have the same name than the theme
   templates/
   specs.yml              => file describing your theme
 ```
+
+[Full documentation about website's theming environement (in french)](docs/theming-fr.md)
 
 ## Working on a theme
 
