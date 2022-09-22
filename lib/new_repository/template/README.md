@@ -61,7 +61,7 @@ my-theme-1/              => root folder must have the same name than the theme
   specs.yml              => file describing your theme
 ```
 
-[Full documentation about website's theming environement (in french)](docs/theming.md)
+[Full documentation about theming environement](docs/theming.md)
 
 ## Working on a theme
 
