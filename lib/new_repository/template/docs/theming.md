@@ -84,7 +84,7 @@ Webpack entry point is `main.js` and `main.scss`.
 
 # Layout
 
-Layouts are skeletons for each page of the site. It contains the elements that must be present at each time (CSS, Js, Favicon, etc. ...).
+Layouts are skeletons for each page of the site. It contains the elements that must be present on each page (CSS, JS, Favicon, etc. ...).
 
 # Sections
 
