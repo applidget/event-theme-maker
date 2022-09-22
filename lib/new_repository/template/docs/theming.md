@@ -124,8 +124,6 @@ The first elements of the diagram are general information about the section.
 
 ## Settings
 
-What are the `settings` looks like?
-
 The `settings` is a table of the different settings of the section. In general a setting is presented in this form:
 
     {
