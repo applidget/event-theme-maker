@@ -88,7 +88,7 @@ Layouts are skeletons for each page of the site. It contains the elements that m
 
 # Sections
 
-The sections are the elements that can be added to a page via the customization interface of the website.
+The sections are the elements that can be added to a page via the builder.
 
 Each section consists of two distinct parts: the HTML/liquid code and the schema.
 
