@@ -107,7 +107,7 @@ The schema gives us information about the section and allows us to create the op
     {% endschema %}
 
 
-The first elements of the diagram are general information about the section.
+The first elements are generally information about the section.
 
     {% schema %}
       {
