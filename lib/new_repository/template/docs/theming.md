@@ -55,7 +55,7 @@ This file allows you to configure the execution of the Yarn script as well as to
 
 This file allows you to create global parameters of the site (social networks, title color, background color, text color, section spacing, font, etc...). Configurations that are not specific to a section and/or that must appear in the layout must be defined in this file.
 
-To reuse these settings in the HTML you need to do `settings.id_of_setting` (e.g. to call the text color of the website: `settigns.color_body_text`).
+You can access these settings from a liquid with `settings.id_of_setting` (e.g. to call the text color of the website: `settings.color_body_text`).
 
 ## config\presets.fr.json and presets.en.json
 
