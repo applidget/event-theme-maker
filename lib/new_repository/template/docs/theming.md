@@ -39,7 +39,7 @@ URL parameters are accessible using the liquid variable `url_params` (ex: with h
 
 # Config
 
-## spec.yml
+## specs.yml
 
 The specs file describe the theme and its component. Component described in this file are your theme components.
 
