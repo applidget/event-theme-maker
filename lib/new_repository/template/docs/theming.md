@@ -197,7 +197,7 @@ Example:
 
 #### Display condition - Show_if
 
-To each setting it is possible to add a display condition (`show_if`).
+For each setting it is possible to add conditional display (`show_if`).
 
 For example we will allow the possibility to customize the **Color of the button** only if the checkbox **"Apply a custom style "** is checked:
 
