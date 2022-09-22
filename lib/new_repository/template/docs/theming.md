@@ -90,7 +90,7 @@ Layouts are skeletons for each page of the site. It contains the elements that m
 
 The sections are the elements that can be added to a page via the customization interface of the website.
 
-Each section consists of two distinct parts: the HTML code and the schema.
+Each section consists of two distinct parts: the HTML/liquid code and the schema.
 
 ## HTML code of a section
 
