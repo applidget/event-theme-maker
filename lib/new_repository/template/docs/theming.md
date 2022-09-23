@@ -125,7 +125,7 @@ The first elements are generally information about the section.
 
 ## Settings
 
-The `settings` is a table of the different settings of the section. In general a setting is presented in this form:
+The `settings` is an array of the different settings of the section. In general a setting is presented in this form:
 
     {
       "type": "text",
@@ -518,8 +518,8 @@ In this tag you also have access to several liquid variables:
 
 | Variable          | Description |
 | ----------------- | ----------- |
-| sessions          | A table of sessions that can be looped over to display them. |
+| sessions          | An array of sessions that can be looped over to display them. |
 | speaker\_roles    | If the `display_speakers` argument to `sessions_list` is set to `true`, this returns a hash which lists the ids of guests who are speakers for a session. Otherwise an empty array. |
 | exhibitor\_roles  | If the `display_exhibitors` argument to `sessions_list` is set to `true`, this returns a hash that lists the guest ids that are exhibitors for a session. Otherwise an empty array. |
 | guests            | An array of guests that can be looped over to display them. |
-| thematics\_by\_id | A hash of the thematic ids returning the themes. |
+| thematics\_by\_id | A hash of the thematic ids returning thematics. |
