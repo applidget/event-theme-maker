@@ -111,7 +111,7 @@ const syncLayouts = (theme, host, cb) => {
       return cb();
     }
 
-    logFatal(error);
+    logFatal(stringify(error));
   });
 }
 
