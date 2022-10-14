@@ -5,10 +5,6 @@
   "keywords": [],
   "author": "Eventmaker team 🚀",
   "license": "ISC",
-  "os": [
-    "darwin",
-    "linux"
-  ],
   "bin": {
     "start": "./bin/start.js",
     "release": "./bin/release.js",
