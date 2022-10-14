@@ -2,6 +2,7 @@
 
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
+const path = require("path");
 
 const startLocalServer = require("../lib/start/start_local_server");
 const startDevServer = require("../lib/start/start_dev_server");
@@ -99,9 +100,13 @@ const fetchTheme = (cb) => {
   });
 }
 
+const layoutFile = (theme, layout) => {
+  return path.join("themes", theme, "layouts", `${layout}.liquid`);
+}
+
 const syncLayouts = (theme, host, cb) => {
-  const themeLayout = `themes/${theme}/layouts/theme.liquid`;
-  const embedLayout = `themes/${theme}/layouts/embed.liquid`;
+  const themeLayout = layoutFile(theme, "theme");
+  const embedLayout = layoutFile(theme, "embed");
   const files = [themeLayout, embedLayout];
 
   syncFiles(theme, apiClient, files, devServer, host, (ok, error) => {
@@ -111,7 +116,7 @@ const syncLayouts = (theme, host, cb) => {
       return cb();
     }
 
-    logFatal(error);
+    logFatal(stringify(error));
   });
 }
 
