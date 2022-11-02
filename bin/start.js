@@ -64,7 +64,7 @@ const argv = yargs(hideBin(process.argv))
     },
     "watchPath": {
       describe: "Auto sync folder",
-      default: "./themes/**/*.liquid"
+      default: "./themes/**/*.{liquid,json,yml}"
     },
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
