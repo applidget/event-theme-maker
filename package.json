@@ -1,6 +1,6 @@
 {
   "name": "event-theme-maker",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Eventmaker theme developers tools belt",
   "keywords": [],
   "author": "Eventmaker team 🚀",
@@ -49,9 +49,5 @@
   },
   "scripts": {
     "lint": "npx eslint '**/*.js'"
-  },
-  "browserslist": [
-    "last 4 versions",
-    "ie > 8"
-  ]
+  }
 }
