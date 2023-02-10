@@ -28,7 +28,7 @@
     "chokidar": "^3.5.3",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^4.2.2",
-    "fs-extra": "^10.1.0",
+    "fs-extra": "^11.1.0",
     "js-yaml": "^4.1.0",
     "klaw-sync": "^6.0.0",
     "liquidjs": "^10.4.0",
