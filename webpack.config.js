@@ -3,6 +3,8 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
+const apply = require("postcss-class-apply/dist");
+const tailwindcss = require("tailwindcss");
 
 module.exports = (env) => ({
   mode: env.mode || "production",
@@ -51,6 +53,7 @@ module.exports = (env) => ({
             options: {
               postcssOptions: {
                 plugins: [
+                  ["tailwindcss"],
                   ["autoprefixer"],
                 ],
               },
@@ -71,7 +74,8 @@ module.exports = (env) => ({
             options: {
               postcssOptions: {
                 plugins: [
-                  ["autoprefixer"]
+                  [apply],
+                  ["autoprefixer"],
                 ],
               },
             },
