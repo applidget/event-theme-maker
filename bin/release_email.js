@@ -4,7 +4,6 @@ const { hideBin } = require("yargs/helpers");
 
 const upload = require("../lib/release/upload");
 const ApiClient = require("../lib/api_client");
-const ensureThemeNotLocked = require("../lib/utils/ensure_theme_not_locked");
 const fs = require("fs");
 const path = require("path");
 const fse = require("fs-extra");
@@ -73,8 +72,6 @@ const coypEmailTheme = (theme, releaseDir, templateDir, cb) => {
 const deleteReleaseDir = () => {
   fs.rmSync(EMAIL_BUCKET_ROOT_DIR, { recursive: true, force: true });
 }
-
-ensureThemeNotLocked(theme);
 
 logInfo(`Starting upload for ${theme}`);
 const releaseDir = EMAIL_BUCKET_ROOT_DIR;

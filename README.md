@@ -34,6 +34,10 @@ When you run `release`
 - Your theme is published to the official Eventmaker theme repository
 - Your theme is available to use on your production event on Eventmaker
 
+When you run `release_email`
+- Your email template is published to the official Eventmaker theme repository
+- Your email template is available to use on your production event on Eventmaker
+
 When you run `validate` we perform a bunch of validations to help you build themes that runs nicely on Eventmaker
 
 When you run `new_theme` we create an empty theme based on the one you chose.
