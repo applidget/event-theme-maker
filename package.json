@@ -1,6 +1,6 @@
 {
   "name": "event-theme-maker",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "description": "Eventmaker theme developers tools belt",
   "keywords": [],
   "author": "Eventmaker team 🚀",
@@ -8,6 +8,7 @@
   "bin": {
     "start": "./bin/start.js",
     "release": "./bin/release.js",
+    "release_email": "./bin/release_email.js",
     "validate": "./bin/validate.js",
     "new_theme": "./bin/new_theme.js",
     "new_repository": "./bin/new_repository"

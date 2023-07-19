@@ -11,6 +11,7 @@ In a repository containing Eventmaker themes run:
 Then run:
 - `start help`
 - `release help`
+- `release_email help`
 - `validate help`
 - `new_theme help`
 - `new_repository help`
@@ -84,4 +85,3 @@ Then you can use your local version in a repositoy containging Eventmaker themes
 by
 
 `"event-theme-maker": "file:/path/to/the/root/of/this/repository"`
-
