@@ -138,7 +138,7 @@ const performInitialSync = (theme, host, cb) => {
 }
 
 const startAutoSync = (theme, host) => {
-  watchFileSystem(watchPath, (file) => { //TODO: watch email also
+  watchFileSystem(watchPath, (file) => {
     syncFiles(theme, apiClient, [file], devServer, host, (ok, error) => {
       if (ok) {
         return logUpload(file);

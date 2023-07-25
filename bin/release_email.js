@@ -7,10 +7,13 @@ const ApiClient = require("../lib/api_client");
 const fs = require("fs");
 const path = require("path");
 const fse = require("fs-extra");
+const replaceInFile = require("../lib/utils/replace_in_file");
 
 const {
   API_ENDPOINT,
-  EMAIL_BUCKET_ROOT_DIR
+  EMAIL_BUCKET_ROOT_DIR,
+  PRODUCTION_ENDPOINT,
+  EMAIL_FAKE_HOST
 } = require("../lib/constants");
 
 const {
@@ -58,14 +61,20 @@ const {
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
 const apiClient = new ApiClient(endpoint, token);
 
+const replaceProductionURL = (releaseDir, theme) => {
+  const host = `${PRODUCTION_ENDPOINT}/${releaseDir}`;
+  const reg = new RegExp(`https://${EMAIL_FAKE_HOST}`, "g");
+
+  replaceInFile(path.join(releaseDir, theme, "specs.yml"), reg, host);
+}
+
 const coypEmailTheme = (theme, releaseDir, templateDir, cb) => {
   const originPath = path.join(".", templateDir, theme);
-  console.log("originPath", originPath);
   const destPath = path.join(".", releaseDir, theme);
-  console.log("destPath", destPath);
   deleteReleaseDir();
   fs.mkdirSync(destPath, { recursive: true });
   fse.copySync(originPath, destPath);
+  replaceProductionURL(releaseDir, theme);
   cb();
 }
 
