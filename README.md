@@ -11,6 +11,7 @@ In a repository containing Eventmaker themes run:
 Then run:
 - `start help`
 - `release help`
+- `release_email help`
 - `validate help`
 - `new_theme help`
 - `new_repository help`
@@ -32,6 +33,10 @@ When you run `release`
 - Development environment variables are replaced by production environment variables
 - Your theme is published to the official Eventmaker theme repository
 - Your theme is available to use on your production event on Eventmaker
+
+When you run `release_email`
+- Your email template is published to the official Eventmaker theme repository
+- Your email template is available to use on your production event on Eventmaker
 
 When you run `validate` we perform a bunch of validations to help you build themes that runs nicely on Eventmaker
 
@@ -84,4 +89,3 @@ Then you can use your local version in a repositoy containging Eventmaker themes
 by
 
 `"event-theme-maker": "file:/path/to/the/root/of/this/repository"`
-

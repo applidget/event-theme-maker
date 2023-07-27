@@ -11,7 +11,7 @@ const ensureThemeNotLocked = require("../lib/utils/ensure_theme_not_locked");
 
 const {
   API_ENDPOINT,
-  BUCKET_ROOT_DIR
+  WEBSITE_BUCKET_ROOT_DIR
 } = require("../lib/constants");
 
 const {
@@ -32,7 +32,7 @@ const argv = yargs(hideBin(process.argv))
     },
     "token": {
       alias: "t",
-      describe: "Your Eventmaker authentication token to access the REST API (find it on your profifle page)",
+      describe: "Your Eventmaker authentication token to access the REST API (find it on your profile page)",
       demandOption: true
     },
     "local": {
@@ -66,11 +66,11 @@ logInfo(`Starting build process for ${theme}`);
 log("1️⃣ building assets...");
 buildAssets(theme, () => {
   log("2️⃣ packaging theme...");
-  pack(theme, BUCKET_ROOT_DIR, (releaseDir, assetsDir) => {
+  pack(theme, WEBSITE_BUCKET_ROOT_DIR, (releaseDir, assetsDir) => {
     log("3️⃣ creating theme bundle...");
-    bundle(theme, BUCKET_ROOT_DIR, releaseDir, assetsDir, () => {
+    bundle(theme, WEBSITE_BUCKET_ROOT_DIR, releaseDir, assetsDir, () => {
       log("4️⃣ publishing theme...");
-      upload(theme, releaseDir, assetsDir, apiClient, (files) => {
+      upload(theme, releaseDir, assetsDir, apiClient, true, (files) => {
         files.forEach(f => logUpload(f));
         logSuccess(`Theme ${theme} has been released`);
       });
