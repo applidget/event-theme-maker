@@ -83,9 +83,7 @@ For email themes development, you can add your theme in the `email_themes` folde
       layouts/
         theme.liquid
       sections/
-        *.liquid
       snippets/
-        *.liquid
       specs.yml
     my-other-themes/
       ...
