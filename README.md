@@ -44,6 +44,8 @@ When you run `new_theme` we create an empty theme based on the one you chose.
 
 Only a member of Eventmaker's team should run `new_repository`. It's used to create a new repository for customers wishing to develop their own Eventmaker themes 😊.
 
+For email themes development, you can add your theme in the `email_themes` folder.
+
 ## Requirements
 
 - You will need a **theme developer account on Eventmaker** ! Contact-us 😊.
@@ -74,6 +76,20 @@ Only a member of Eventmaker's team should run `new_repository`. It's used to cre
       specs.yml
     my-other-themes/
       ...
+  email_themes/
+    my-theme-1/
+      config/
+        *.json
+      layouts/
+        theme.liquid
+      sections/
+        *.liquid
+      snippets/
+        *.liquid
+      specs.yml
+    my-other-themes/
+      ...
+      specs.yml
   package.json
 ```
 
