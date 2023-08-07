@@ -33,7 +33,7 @@ const argv = yargs(hideBin(process.argv))
   .options({
     "token": {
       alias: "t",
-      describe: "Your Eventmaker authentication token to access the REST API (find it on your profifle page)",
+      describe: "Your Eventmaker authentication token to access the REST API (find it on your profile page)",
       demandOption: true
     },
     "eventId": {
@@ -64,11 +64,15 @@ const argv = yargs(hideBin(process.argv))
     },
     "watchPath": {
       describe: "Auto sync folder",
-      default: "./themes/**/*.{liquid,json,yml}"
+      default: "./{email_themes,themes}/**/*.{liquid,json,yml}"
     },
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
       default: "http://localhost:3000"
+    },
+    "emailId": {
+      alias: "m",
+      describe: "The email id to work on. If not provided, automatic sync for email will not be done."
     }
   })
   .help("help")
@@ -82,13 +86,14 @@ const {
   port,
   local,
   watchPath,
-  eventmakerLocalEndpoint
+  eventmakerLocalEndpoint,
+  emailId
 } = argv;
 
 let { initialSync } = argv; // this one may change if fetched theme != argTheme
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
-const apiClient = new ApiClient(endpoint, token, eventId);
+const apiClient = new ApiClient(endpoint, token, eventId, emailId);
 
 const fetchTheme = (cb) => {
   apiClient.fetchWebsite((ok, response) => {
