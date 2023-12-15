@@ -47,7 +47,7 @@ injectDependencies(baseTheme, path);
 
 const updateSummary = () => {
   logSuccess(`Repository updated ${path} 😊.`);
-  log(`WARNING: changes have been synchronized but not commited !`);
+  log(`WARNING: changes have been synchronized but not committed !`);
   log(`  Go to ${path}, check the git status and review the changes !`);
   log(`  The update may have broken the readme for example`);
   log(`  The update did not take into account file deletions so make sure to manually cleanup !`);
