@@ -12,6 +12,7 @@ Then run:
 - `start help`
 - `release help`
 - `release_email help`
+- `release_document help`
 - `validate help`
 - `new_theme help`
 - `new_repository help`
@@ -28,7 +29,7 @@ When you run `start`
 - A watcher will start so when you edit a liquid file it's automatically synchronized on Eventmaker
 
 When you run `release`
-- Your asssets are built by webpack
+- Your assets are built by webpack
 - Your theme is bundled
 - Development environment variables are replaced by production environment variables
 - Your theme is published to the official Eventmaker theme repository
@@ -38,6 +39,10 @@ When you run `release_email`
 - Your email template is published to the official Eventmaker theme repository
 - Your email template is available to use on your production event on Eventmaker
 
+When you run `release_document`
+- Your document template is published to the official Eventmaker theme repository
+- Your document template is available to use on your production event on Eventmaker
+
 When you run `validate` we perform a bunch of validations to help you build themes that runs nicely on Eventmaker
 
 When you run `new_theme` we create an empty theme based on the one you chose.
@@ -45,6 +50,7 @@ When you run `new_theme` we create an empty theme based on the one you chose.
 Only a member of Eventmaker's team should run `new_repository`. It's used to create a new repository for customers wishing to develop their own Eventmaker themes 😊.
 
 For email themes development, you can add your theme in the `email_themes` folder.
+For document themes development, you can add your theme in the `document_themes` folder.
 
 ## Requirements
 
@@ -86,6 +92,18 @@ For email themes development, you can add your theme in the `email_themes` folde
       snippets/
       specs.yml
     my-other-themes/
+      ...
+      specs.yml
+  document_themes/
+    my-theme-1/
+      config/
+        *.json
+      layouts/
+        theme.liquid
+      sections/
+      snippets/
+      specs.yml
+    my-other-theme/
       ...
       specs.yml
   package.json

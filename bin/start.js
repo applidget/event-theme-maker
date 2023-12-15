@@ -64,7 +64,7 @@ const argv = yargs(hideBin(process.argv))
     },
     "watchPath": {
       describe: "Auto sync folder",
-      default: "./{email_themes,themes}/**/*.{liquid,json,yml}"
+      default: "./{document_themes,email_themes,themes}/**/*.{liquid,json,yml}"
     },
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
@@ -73,6 +73,10 @@ const argv = yargs(hideBin(process.argv))
     "emailId": {
       alias: "m",
       describe: "The email id to work on. If not provided, automatic sync for email will not be done."
+    },
+    "documentId": {
+      alias: "d",
+      describe: "The document id to work on. If not provided, automatic sync for document will not be done."
     }
   })
   .help("help")
@@ -87,13 +91,14 @@ const {
   local,
   watchPath,
   eventmakerLocalEndpoint,
-  emailId
+  emailId,
+  documentId
 } = argv;
 
 let { initialSync } = argv; // this one may change if fetched theme != argTheme
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
-const apiClient = new ApiClient(endpoint, token, eventId, emailId);
+const apiClient = new ApiClient(endpoint, token, eventId, emailId, documentId);
 
 const fetchTheme = (cb) => {
   apiClient.fetchWebsite((ok, response) => {
