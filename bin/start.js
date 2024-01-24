@@ -137,7 +137,20 @@ const performInitialSync = (theme, host, cb) => {
 
   logInfo("syncing the theme, please be patient...");
   logHelp("use --initialSync=false to avoid initial theme syncing");
-  apiClient.themeFullSync(host, (ok, error) => {
+
+  let type, typeId;
+
+  if (emailId) {
+    type = "email";
+    typeId = emailId;
+  } else if (documentId) {
+    type = "document";
+    typeId = documentId;
+  } else {
+    type = "website";
+  }
+
+  apiClient.themeFullSync(host, type, typeId, (ok, error) => {
     if (ok) {
       return cb();
     }
@@ -182,11 +195,20 @@ const summary = (theme, host) => {
   log(`  - working on ${theme} on event ${eventId}`);
   log(`  - local server running at ${host}`);
   log(`  - webpack dev server running at ${devServer}`);
+
   initialSync ? (
     log(`  - local theme has been reloaded, assets will be fetched from the local server`)
   ) : (
     log(`  - theme layouts have been reloaded, assets will be fetched from the local server`)
   );
+
+  if (emailId) {
+    log("  - 📤 Email reloading")
+  } else if (documentId) {
+    log("  - 📄 Document reloading")
+  } else {
+    log("  - 🖥️ Website reloading")
+  }
 
   local ? (
     log(`  - reaching Eventmaker at ${eventmakerLocalEndpoint}`)
