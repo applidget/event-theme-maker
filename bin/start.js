@@ -138,26 +138,15 @@ const performInitialSync = (theme, host, cb) => {
   logInfo("syncing the theme, please be patient...");
   logHelp("use --initialSync=false to avoid initial theme syncing");
 
-  let type, typeId;
-
-  if (emailId) {
-    type = "email";
-    typeId = emailId;
-  } else if (documentId) {
-    type = "document";
-    typeId = documentId;
-  } else {
-    type = "website";
-  }
-
-  apiClient.themeFullSync(host, type, typeId, (ok, error) => {
-    if (ok) {
-      return cb();
-    }
-
+  const handleSyncResponse = (themeType) => (ok, error) => {
+    if (ok) return cb();
     wrapRed(() => log(stringify(error)));
-    logFatal("error reloading theme");
-  });
+    logFatal(`error reloading ${themeType} theme`);
+  };
+
+  apiClient.themeFullSync(host, "website", null, handleSyncResponse("website"));
+  if (emailId) apiClient.themeFullSync(host, "email", emailId, handleSyncResponse("email"));
+  if (documentId) apiClient.themeFullSync(host, "document", documentId, handleSyncResponse("document"));
 }
 
 const startAutoSync = (theme, host) => {
