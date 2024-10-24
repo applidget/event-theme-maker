@@ -15,7 +15,7 @@
     "new_repository": "./bin/new_repository"
   },
   "engines": {
-    "node": ">= 18.12.0"
+    "node": ">= 18.18.0"
   },
   "devDependencies": {
     "eslint": "^9.13.0"
