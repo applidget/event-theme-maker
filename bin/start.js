@@ -221,7 +221,7 @@ const summary = (theme, host) => {
   log("Happy coding 👩‍💻\n\n");
 }
 
-logInfo("starting development environment..");
+logInfo("starting development environment...");
 
 fetchTheme(theme => {
   updateWebsiteThemeIfNeeded(theme, (theme) => {
