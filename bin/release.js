@@ -43,7 +43,7 @@ const argv = yargs(hideBin(process.argv))
     },
     "unsecure": {
       alias: "u",
-      describe: "By pass SSL error due to Company firewall",
+      describe: "Bypass SSL error due to Company firewall",
       boolean: true,
       default: false
     },
