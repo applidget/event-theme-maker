@@ -47,12 +47,6 @@ const argv = yargs(hideBin(process.argv))
       boolean: true,
       default: false
     },
-    "unsecure": {
-      alias: "u",
-      describe: "By pass SSL error due to Company firewall",
-      boolean: true,
-      default: false
-    },
     "theme": {
       alias: "n",
       describe: "The theme to work on. By default, the current event theme will be used. If the theme here is different than the website one, a full sync will be performed automatically"
@@ -102,7 +96,6 @@ const {
 } = argv;
 
 let { initialSync } = argv; // this one may change if fetched theme != argTheme
-let { unsecure } = argv;
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
 const apiClient = new ApiClient(endpoint, token, eventId, emailId, documentId);
@@ -209,10 +202,6 @@ const summary = (theme, host) => {
     log(`  - theme layouts have been reloaded, assets will be fetched from the local server`)
   );
 
-  if (unsecure) {
-    log(`  - event-theme-maker run in unsecure mode to ignore SSL issues`)
-  };
-
   if (emailId) {
     log("  - 📤 Email reloading")
   } else if (documentId) {
@@ -232,7 +221,7 @@ const summary = (theme, host) => {
   log("Happy coding 👩‍💻\n\n");
 }
 
-logInfo("starting development environment... XXX");
+logInfo("starting development environment..");
 
 fetchTheme(theme => {
   updateWebsiteThemeIfNeeded(theme, (theme) => {

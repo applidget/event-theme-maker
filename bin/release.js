@@ -41,6 +41,12 @@ const argv = yargs(hideBin(process.argv))
       boolean: true,
       default: false
     },
+    "unsecure": {
+      alias: "u",
+      describe: "By pass SSL error due to Company firewall",
+      boolean: true,
+      default: false
+    },
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
       default: "http://localhost:3000"
@@ -54,11 +60,12 @@ const {
   theme,
   token,
   local,
+  unsecure,
   eventmakerLocalEndpoint
 } = argv;
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
-const apiClient = new ApiClient(endpoint, token);
+const apiClient = new ApiClient(endpoint, token, null, null, null, unsecure);
 
 ensureThemeNotLocked(theme);
 
