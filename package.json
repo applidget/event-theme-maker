@@ -32,7 +32,7 @@
     "css-minimizer-webpack-plugin": "^6.0.0",
     "fs-extra": "^11.1.0",
     "js-yaml": "^4.1.0",
-    "klaw-sync": "^6.0.0",
+    "klaw-sync": "^7.0.0",
     "liquidjs": "^10.4.0",
     "lodash": "^4.17.21",
     "mime-types": "^2.1.35",
