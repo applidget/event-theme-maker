@@ -114,7 +114,7 @@ For document themes development, you can add your theme in the `document_themes`
 ## For developers working on event-theme-maker
 
 To work on this package, clone the repository and run `npm install`.
-Then you can use your local version in a repositoy containging Eventmaker themes by modifying in the package.json:
+Then you can use your local version in a repository containing Eventmaker themes by modifying in the package.json:
 
 `"event-theme-maker": "^x.y.z"`
 
