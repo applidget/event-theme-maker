@@ -41,9 +41,9 @@ const argv = yargs(hideBin(process.argv))
       boolean: true,
       default: false
     },
-    "unsecure": {
-      alias: "u",
-      describe: "Bypass SSL error due to Company firewall",
+    "insecure": {
+      alias: "i",
+      describe: "Bypass SSL certificate verification (USE ONLY IN DEVELOPMENT)",
       boolean: true,
       default: false
     },
@@ -60,12 +60,16 @@ const {
   theme,
   token,
   local,
-  unsecure,
+  insecure,
   eventmakerLocalEndpoint
 } = argv;
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
-const apiClient = new ApiClient(endpoint, token, null, null, null, unsecure);
+const apiClient = new ApiClient(endpoint, token, null, null, null, insecure);
+
+if (insecure) {
+  log("⚠️  WARNING: SSL certificate verification is disabled. Use only in development environments!");
+}
 
 ensureThemeNotLocked(theme);
 

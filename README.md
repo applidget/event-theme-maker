@@ -19,6 +19,21 @@ Then run:
 
 All arguments can be set by a json config file or by an environment variable prefixed by `ETM_`.
 
+## Important options
+
+### SSL Certificate Verification (`--insecure`)
+
+The `--insecure` (or `-i`) option disables SSL certificate verification for HTTPS requests. This is useful when working behind corporate firewalls with self-signed certificates.
+
+**⚠️ WARNING: This option should ONLY be used in development environments. NEVER use it in production.**
+
+Example usage:
+```bash
+release --theme my-theme --token YOUR_TOKEN --insecure
+```
+
+When this option is enabled, you will see a warning message to remind you that SSL verification is disabled.
+
 ## How it works ?
 
 When you run `start`
