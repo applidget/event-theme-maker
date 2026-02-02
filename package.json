@@ -5,14 +5,18 @@
   "keywords": [],
   "author": "Eventmaker team 🚀",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/applidget/event-theme-maker"
+  },
   "bin": {
-    "start": "./bin/start.js",
-    "release": "./bin/release.js",
-    "release_email": "./bin/release_email.js",
-    "release_document": "./bin/release_document.js",
-    "validate": "./bin/validate.js",
-    "new_theme": "./bin/new_theme.js",
-    "new_repository": "./bin/new_repository"
+    "etm-start": "./bin/start.js",
+    "etm-release": "./bin/release.js",
+    "etm-release-email": "./bin/release_email.js",
+    "etm-release-document": "./bin/release_document.js",
+    "etm-validate": "./bin/validate.js",
+    "etm-new-theme": "./bin/new_theme.js",
+    "etm-new-repository": "./bin/new_repository.js"
   },
   "engines": {
     "node": ">= 24.11.0"
