@@ -1,6 +1,6 @@
 {
   "name": "event-theme-maker",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Eventmaker theme developers tools belt",
   "keywords": [],
   "author": "Eventmaker team 🚀",
@@ -12,11 +12,11 @@
   "bin": {
     "start": "./bin/start.js",
     "release": "./bin/release.js",
-    "release-email": "./bin/release_email.js",
-    "release-document": "./bin/release_document.js",
+    "release_email": "./bin/release_email.js",
+    "release_document": "./bin/release_document.js",
     "validate": "./bin/validate.js",
-    "new-theme": "./bin/new_theme.js",
-    "new-repository": "./bin/new_repository.js"
+    "new_theme": "./bin/new_theme.js",
+    "new_repository": "./bin/new_repository.js"
   },
   "engines": {
     "node": ">= 24.11.0"
