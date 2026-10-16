@@ -63,8 +63,8 @@ const argv = yargs(hideBin(process.argv))
       default: false
     },
     "watchPath": {
-      describe: "Auto sync folder",
-      default: "./{document_themes,email_themes,themes}/**/*.{liquid,json,yml}"
+      describe: "Auto sync folders (comma separated). Liquid/JSON/YAML files inside are watched.",
+      default: "document_themes,email_themes,themes"
     },
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
@@ -161,7 +161,7 @@ const performInitialSync = (theme, host, cb) => {
 }
 
 const startAutoSync = (theme, host) => {
-  watchFileSystem(watchPath, (file) => {
+  watchFileSystem(watchPath.split(",").map((dir) => dir.trim()).filter(Boolean), (file) => {
     syncFiles(theme, apiClient, [file], devServer, host, (ok, error) => {
       if (ok) {
         return logUpload(file);

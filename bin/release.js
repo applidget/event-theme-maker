@@ -41,6 +41,12 @@ const argv = yargs(hideBin(process.argv))
       boolean: true,
       default: false
     },
+    "insecure": {
+      alias: "i",
+      describe: "Bypass SSL certificate verification (USE ONLY IN DEVELOPMENT)",
+      boolean: true,
+      default: false
+    },
     "eventmakerLocalEndpoint": {
       describe: "When using local=true specify the local endpoint of Eventmaker",
       default: "http://localhost:3000"
@@ -54,11 +60,16 @@ const {
   theme,
   token,
   local,
+  insecure,
   eventmakerLocalEndpoint
 } = argv;
 
 const endpoint = local ? eventmakerLocalEndpoint : API_ENDPOINT;
-const apiClient = new ApiClient(endpoint, token);
+const apiClient = new ApiClient(endpoint, token, null, null, null, insecure);
+
+if (insecure) {
+  log("⚠️  WARNING: SSL certificate verification is disabled. Use only in development environments!");
+}
 
 ensureThemeNotLocked(theme);
 
