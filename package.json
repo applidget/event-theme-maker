@@ -37,7 +37,7 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^8.0.0",
     "fs-extra": "^11.1.0",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.5.0",
     "klaw-sync": "^7.0.0",
     "liquidjs": "^10.4.0",
     "lodash": "^4.17.21",
