@@ -60,12 +60,9 @@ When you run `release_document`
 
 When you run `validate` we perform a bunch of validations to help you build themes that runs nicely on Eventmaker
 
-When you run `new_theme` we create an empty theme based on the one you chose.
+When you run `new_theme` we create an empty theme based on the one you chose. Add `--type email` or `--type document` for an email or document theme (in `email_themes` or `document_themes`).
 
 Only a member of Eventmaker's team should run `new_repository`. It's used to create a new repository for customers wishing to develop their own Eventmaker themes 😊.
-
-For email themes development, you can add your theme in the `email_themes` folder.
-For document themes development, you can add your theme in the `document_themes` folder.
 
 ## Requirements
 
