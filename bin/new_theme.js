@@ -18,6 +18,12 @@ const argv = yargs(hideBin(process.argv))
       alias: "b",
       describe: "The name of the theme to use as a base",
       demandOption: true
+    },
+    "type": {
+      alias: "t",
+      describe: "The kind of theme",
+      choices: ["website", "email", "document"],
+      default: "website"
     }
   })
   .help("help")
@@ -26,9 +32,10 @@ const argv = yargs(hideBin(process.argv))
 
 const {
   theme,
-  baseTheme
+  baseTheme,
+  type
 } = argv;
 
-createTheme(theme, baseTheme);
+createTheme(theme, baseTheme, type);
 
 logSuccess(`Theme ${theme} is ready 🚀\nMake sure to ask the Eventmaker team to allow you to work on this new theme.`);
